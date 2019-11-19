@@ -30,25 +30,27 @@ const AffixList: React.FunctionComponent<Props> = ({ groupedAffixes }) => {
         <li className="modCard" key={groupName}>
           <button className="collapsible" onClick={onCollapsible}>
             <table className="table">
-              <tr>
-                <th colSpan={3}>{header}</th>
-              </tr>
-              <tr>
-                <td className="alignLeft">
-                  {group.modType} - {group.generationType}
-                </td>
-                <td title={`Spawn chance: ${spawnChance.toFixed(6)}%`}>
-                  Chance: {`${spawnChance.toFixed(1)}%`}{" "}
-                </td>
-                <td className="alignRight">
-                  Tiers: {group.tiersAvailable}/{group.tiers}
-                </td>
-              </tr>
+              <thead>
+                <tr>
+                  <th colSpan={3}>{header}</th>
+                </tr>
+                <tr>
+                  <td className="alignLeft">
+                    {group.modType} - {group.generationType}
+                  </td>
+                  <td title={`Spawn chance: ${spawnChance.toFixed(6)}%`}>
+                    Chance: {`${spawnChance.toFixed(1)}%`}{" "}
+                  </td>
+                  <td className="alignRight">
+                    Tiers: {group.tiersAvailable}/{group.tiers}
+                  </td>
+                </tr>
+              </thead>
             </table>
           </button>
           <div className="collapsibleContent">
             {group.mods.map(mod => (
-              <Affix affixData={mod} />
+              <Affix affixData={mod} key={mod.mod.key} />
             ))}
           </div>
         </li>
