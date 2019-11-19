@@ -6,7 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Build folder
-/build
+build/
 
 # Runtime data
 pids
