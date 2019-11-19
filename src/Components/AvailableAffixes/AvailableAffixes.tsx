@@ -21,12 +21,13 @@ import AffixList from "./AffixList";
 import "./AvailableAffixes.css";
 import SearchBar from "./searchBar";
 import { notImplementedString } from "../../Common/Utilities";
+import debounceRender from "react-debounce-render";
 
 interface Props {
   entityStateMeta: EntityStateMeta;
 }
 
-const AvailableAffixes: React.FunctionComponent<Props> = ({
+const AvailableAffixes1: React.FunctionComponent<Props> = ({
   entityStateMeta
 }) => {
   const [affixes, setAffixes] = useState<Mod[]>([]);
@@ -244,5 +245,7 @@ interface Filters {
   Essence: boolean;
   Master: boolean;
 }
-
+const AvailableAffixes = debounceRender(AvailableAffixes1, 300, {
+  leading: true
+});
 export default AvailableAffixes;
