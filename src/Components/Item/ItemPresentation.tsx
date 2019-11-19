@@ -164,7 +164,7 @@ function ItemPresentation({ item }: { item: EntityState }) {
         !!item.calculatedProperties.fire_damage_max
       ) {
         eleDmg.push(
-          <span className="value fire">
+          <span className="value fire" key={"fire"}>
             {item.calculatedProperties.fire_damage_min}-
             {item.calculatedProperties.fire_damage_max}
           </span>
@@ -175,7 +175,7 @@ function ItemPresentation({ item }: { item: EntityState }) {
         !!item.calculatedProperties.cold_damage_max
       ) {
         eleDmg.push(
-          <span className="value cold">
+          <span className="value cold" key={"cold"}>
             {item.calculatedProperties.cold_damage_min}-
             {item.calculatedProperties.cold_damage_max}
           </span>
@@ -186,7 +186,7 @@ function ItemPresentation({ item }: { item: EntityState }) {
         !!item.calculatedProperties.lightning_damage_max
       ) {
         eleDmg.push(
-          <span className="value lightning">
+          <span className="value lightning" key={"lightning"}>
             {item.calculatedProperties.lightning_damage_min}-
             {item.calculatedProperties.lightning_damage_max}
           </span>
@@ -249,78 +249,77 @@ function ItemPresentation({ item }: { item: EntityState }) {
       const requirements: any[] = [];
       if (item.baseItem.requirements.level > 1) {
         requirements.push(
-          <>
+          <span key={"level"}>
             {" "}
             Level{" "}
             <span className="value">{item.baseItem.requirements.level}</span>
-          </>
+          </span>
         );
       }
       if (!!item.baseItem.requirements.strength) {
         item.baseItem.requirements.strength ===
         item.calculatedProperties.strength
           ? requirements.push(
-              <>
+              <span key={"strength"}>
                 <span className="value">
                   {item.baseItem.requirements.strength}
                 </span>{" "}
                 Str
-              </>
+              </span>
             )
           : requirements.push(
-              <>
+              <span key={"strength"}>
                 <span className="value augmented">
                   {item.calculatedProperties.strength.toFixed(0)}
                 </span>{" "}
                 Str
-              </>
+              </span>
             );
       }
       if (!!item.baseItem.requirements.dexterity) {
         item.baseItem.requirements.dexterity ===
         item.calculatedProperties.dexterity
           ? requirements.push(
-              <>
+              <span key={"dexterity"}>
                 <span className="value">
                   {item.baseItem.requirements.dexterity}
                 </span>{" "}
                 Dex
-              </>
+              </span>
             )
           : requirements.push(
-              <>
+              <span key={"dexterity"}>
                 <span className="value augmented">
                   {item.calculatedProperties.dexterity.toFixed(0)}
                 </span>{" "}
                 Dex
-              </>
+              </span>
             );
       }
       if (!!item.baseItem.requirements.intelligence) {
         item.baseItem.requirements.intelligence ===
         item.calculatedProperties.intelligence
           ? requirements.push(
-              <>
+              <span key={"intelligence"}>
                 <span className="value">
                   {item.baseItem.requirements.intelligence}
                 </span>{" "}
                 Int
-              </>
+              </span>
             )
           : requirements.push(
-              <>
+              <span key={"intelligence"}>
                 <span className="value augmented">
                   {item.calculatedProperties.intelligence.toFixed(0)}
                 </span>{" "}
                 Int
-              </>
+              </span>
             );
       }
       return (
         <span className="statRequirements">
           <br />
-          Requires{" "}
-          {requirements.map(t => t).reduce((prev, curr) => [prev, ", ", curr])}
+          Requires {requirements.reduce((prev, curr) => [prev, ", ", curr])}
         </span>
       );
     } else return;

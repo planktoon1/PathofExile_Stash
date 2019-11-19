@@ -4,7 +4,10 @@
 }
 
 .itemWrapper {
-  display: flex;
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
   border: 0.2rem solid rgb(43, 36, 32);
   box-sizing: border-box;
   flex-direction: column;
@@ -20,7 +23,10 @@
 }
 
 .itemContent {
-  display: flex;
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
   flex-direction: column;
   align-items: center;
   min-width: 100%;
@@ -37,7 +43,10 @@
 }
 
 .bottomWrapper {
-  display: flex;
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
   float: bottom;
   height: 100%;
   align-items: flex-end;
@@ -84,7 +93,10 @@ p {
   height: 33px;
   color: #c8c8c8;
   font-size: 19px;
-  display: flex;
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
   flex-direction: column;
   align-items: center;
   justify-content: center;
