@@ -6,7 +6,9 @@ The goal of this tool is to provide an authentic crafting experience that stays 
 valuable insight into the system, that can help you get better results when crafting in game.  
 There is a lot of features that is yet to be implemented, and likely some bugs as well. I would love to hear feature  
 suggestions and also about the bugs you encounter, feel free to contact me at: 
+
 mail: _fkoe90@gmail.com_ 
+
 discord: _Planken#8344_.  
 
 ### Planned features - in order of priority
@@ -38,7 +40,7 @@ discord: _Planken#8344_.
 
 *  Rework base item selection
    *   Make it sortable by all columns that makes sense, and also searchable
-
+   
 *   Save state in browser so it's not lost on refresh
    *  With this i will also look into making an "undo" feature
 
