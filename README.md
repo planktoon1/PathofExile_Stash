@@ -48,8 +48,8 @@ suggestions and also about the bugs you encounter, feel free to contact me at: m
 
 ## Credits
 
-[Grinding Gear Games](http://www.grindinggear.com/) {" "} for{" "} [Path of Exile](https://www.pathofexile.com/) . The contents of all data files belong to them.
+[Grinding Gear Games](http://www.grindinggear.com/) for [Path of Exile](https://www.pathofexile.com/) . The contents of all data files belong to them.
 
-[brather1ng](https://github.com/brather1ng) {" "} for answering all my questions and for providing{" "} [RePoE](https://github.com/brather1ng/RePoE)
+[brather1ng](https://github.com/brather1ng) for answering all my questions and for providing [RePoE](https://github.com/brather1ng/RePoE)
 
-[OmegaK2](https://github.com/OmegaK2/) {" "} for{" "} [PyPoE](https://github.com/OmegaK2/PyPoE) . While my app is written in typescript, some methods of it is 1:1 rewrites of the Python code written in this project
+[OmegaK2](https://github.com/OmegaK2/) for [PyPoE](https://github.com/OmegaK2/PyPoE) . While my app is written in typescript, some methods of it is 1:1 rewrites of the Python code written in this project
