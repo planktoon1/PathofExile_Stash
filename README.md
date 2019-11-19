@@ -40,9 +40,9 @@ discord: _Planken#8344_.
 
 *  Rework base item selection
    *   Make it sortable by all columns that makes sense, and also searchable
-   
+
 *   Save state in browser so it's not lost on refresh
-   *  With this i will also look into making an "undo" feature
+    *   With this i will also look into making an undo feature
 
 *  Bestiary Crafting
    *  When everything else is done i'll start thinking about this
