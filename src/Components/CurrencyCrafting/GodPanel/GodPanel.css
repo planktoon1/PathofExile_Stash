@@ -1,0 +1,49 @@
+.godPanel {
+  border-style: solid;
+  border-color: #1e2124;
+  background-color: #0f0f0f;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.godPanel button {
+  font-size: 1rem;
+  border: 1px solid #444;
+  background-color: #333;
+  color: white;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.godPanel input {
+  border: 1px solid #444;
+  background-color: #111;
+  margin: 0 0 0 0.2rem;
+  color: gainsboro;
+  padding: 0.5rem;
+  width: 3rem;
+}
+
+.godPanel .godButtonContainer {
+  flex: 1 0 45%;
+  margin: 0.4rem 0.4rem;
+  width: 14rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.godPanel button.inputButton {
+  padding-left: 20%;
+}
+
+.godPanel select {
+  border: 1px solid #444;
+  padding: 0.4rem 0;
+  margin: 0 0 0 0.2rem;
+  width: 10rem;
+}

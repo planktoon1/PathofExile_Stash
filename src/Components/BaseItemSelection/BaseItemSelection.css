@@ -1,0 +1,85 @@
+.categorySelection {
+  display: flex;
+  justify-content: space-evenly;
+}
+#selectedBaseItem {
+  min-width: 12rem;
+  max-width: 12rem;
+}
+.selected-baseItem {
+  display: flex;
+  border: 1px solid #1e2124;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  min-height: 32px;
+}
+
+select {
+  color: white;
+  background-color: #1e2124;
+  padding: 6px 20px;
+  text-align-last: center;
+}
+
+table.baseItemsList {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+.baseItemsList {
+  font-size: 1rem;
+}
+.baseItemsList tbody {
+  background-color: #141414;
+  text-align: center;
+}
+.categorySelection {
+  padding: 0.2rem 0;
+}
+.baseItemsList th,
+.selected-baseItem,
+.categorySelection {
+  background-color: #141414;
+}
+td.name,
+.selectedBaseItemText {
+  color: rgb(253, 253, 215);
+}
+.selectedBaseItemText {
+  margin-left: 0.4rem;
+}
+.baseItemsList .rowGroup {
+  display: contents;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.baseItemsList .rowGroup:nth-of-type(odd) > * {
+  background-color: #1e2124;
+  filter: brightness(95%);
+}
+.baseItemsList .rowGroup:nth-of-type(even) > * {
+  background-color: #141414;
+  filter: brightness(85%);
+}
+.baseItemsList .rowGroup:hover > * {
+  filter: brightness(100%);
+}
+
+.baseItemsList .icon {
+  height: 42px;
+}
+
+.baseItemsList .ReqStr {
+  color: #ff9fbb;
+}
+.baseItemsList .ReqDex {
+  color: #bdffb2;
+}
+.baseItemsList .ReqInt {
+  color: #bdd8ff;
+}
+.baseItemsList .implicit {
+  color: gray;
+}

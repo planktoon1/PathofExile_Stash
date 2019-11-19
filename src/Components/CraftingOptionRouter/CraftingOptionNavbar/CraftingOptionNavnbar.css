@@ -1,0 +1,6 @@
+.optionsBar {
+    height: fit-content;
+    min-width: fit-content;
+    display: flex;
+    justify-content: center;
+}

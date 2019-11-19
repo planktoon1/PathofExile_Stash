@@ -1,0 +1,55 @@
+.AvailableAffixes .topBar {
+  background-color: #141414;
+  border: 1px solid #1e2124;
+  color: white;
+  padding: 1rem;
+}
+
+.dropdown .dropDownButton {
+  color: white;
+  background-color: #1e2124;
+  height: 2.3rem;
+  padding: 0 1.2rem;
+  text-align-last: center;
+  border: 1px solid bisque;
+  position: relative;
+  width: 100%;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 11rem;
+}
+
+.dropdownContent {
+  display: none;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid bisque;
+  flex-direction: column;
+  position: absolute;
+  background-color: #1e2124;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdownContent {
+  display: flex;
+}
+
+.dropdownContent input[type="checkbox"] {
+  float: right;
+}
+
+.AvailableAffixes input[type="text"] {
+  border: 1px solid #444;
+  background-color: #111;
+  margin: 0 0 0 2rem;
+  color: gainsboro;
+  padding: 0.5rem;
+}
+
+.AvailableAffixes label.disabled {
+  color: #444;
+}

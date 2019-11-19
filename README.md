@@ -1,59 +1,68 @@
-# Path of Exile - Stash
-This is a passion project of mine. It is build using React js and Typescript. 
-I will keep updating it whenever i find time to work on it, i have alot of features in mind, and i'm open to suggestions.
-When i started building this site i had never build anything more complex than the tutorials on Reacts website, resulting in alot of the code base not beeing optimal. I do however refactor as i'm building new features. 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Welcome to Stash. A Single page application that is trying to emulate the crafting system of the popular ARpg Path of Exile.
+## Available Scripts
 
-The goal of this tool is to provide an authentic crafting experience that stays true to the game systems as well as providing  
-valuable insight into the system, that can help you get better results when crafting in game.  
-There is a lot of features that is yet to be implemented, and likely some bugs as well. I would love to hear feature  
-suggestions and also about the bugs you encounter, feel free to contact me at: 
+In the project directory, you can run:
 
-mail: _fkoe90@gmail.com_ 
+### `npm start`
 
-discord: _Planken#8344_.  
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### Planned features - in order of priority
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-**( that i'm working on currently, or will work on whenever i have the time. )**
+### `npm test`
 
-*   Item stats
-    *   Weapons: Dps, Ele. Dps, Phys. Dps, Aps, Crit
-    *   Armour: Armour, Evasion, Energy Shield.
-    *   Likely others
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-*   Copy Paste Feature
-    *   Right now you can CTRL + C while hovering an item in PoE and it will copy a text representation of the item to clipboard.  
-        This feature would allow users to paste items into this website and that way get their item in this tool, and then be able to craft  
-        and see possible outcomes.
-    *   Paste into website
-    *   Copy item from website
+### `npm run build`
 
-*   Info buttons that explains some of the less intuitive features, and also how things are calculated
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-*   Master Crafting
-    *   Add to the manual affix tab
-    *   Separate tab with costs ( basically same menu as the one you find in game )
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-*   Delve Crafting
-    *   Add to the manual affix tab
-    *   Separate tab that allows similar usage of resonators to in game
-    *   Some way of showing possible outcomes with selected fossils
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-*  Rework base item selection
-   *   Make it sortable by all columns that makes sense, and also searchable
+### `npm run eject`
 
-*   Save state in browser so it's not lost on refresh
-    *   With this i will also look into making an undo feature
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-*  Bestiary Crafting
-   *  When everything else is done i'll start thinking about this
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## Credits
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-[Grinding Gear Games](http://www.grindinggear.com/) for [Path of Exile](https://www.pathofexile.com/) . The contents of all data files belong to them.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-[brather1ng](https://github.com/brather1ng) for answering all my questions and for providing [RePoE](https://github.com/brather1ng/RePoE)
+## Learn More
 
-[OmegaK2](https://github.com/OmegaK2/) for [PyPoE](https://github.com/OmegaK2/PyPoE) . While my app is written in typescript, some methods of it is 1:1 rewrites of the Python code written in this project
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

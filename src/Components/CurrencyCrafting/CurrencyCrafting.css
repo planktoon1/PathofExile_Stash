@@ -1,0 +1,68 @@
+.selected-currency {
+  display: flex;
+  border: 1px solid #1e2124;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  height: 2.2rem;
+}
+
+.header {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  height: 2.2rem;
+}
+
+.currencies {
+  padding: 1rem 0.2rem;
+  border: 0.2rem solid #1e2124;
+  background-color: #141414;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 330px;
+}
+
+.statistics {
+  background-color: #141414;
+
+  min-width: 395px;
+}
+
+.crafting-currency {
+  background-color: #04041d;
+  border: 1px solid #473b2b;
+  border-collapse: collapse;
+  cursor: pointer;
+  padding: 0.2rem;
+  margin: 1px;
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+
+.crafting-currency::after {
+  content: attr(data-count);
+  font-size: 1.1rem;
+  position: absolute;
+  color: white;
+  left: 0;
+  top: 0;
+}
+
+.crafting-currency > img {
+  width: 3.4rem;
+  height: 3.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.crafting-currency > img::after {
+  content: " ";
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: pink;
+}

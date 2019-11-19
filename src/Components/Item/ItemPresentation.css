@@ -1,0 +1,172 @@
+@font-face {
+  font-family: fontin_smallcaps;
+  src: url(../../assets/fonts/Fontin-SmallCaps.ttf);
+}
+
+.itemWrapper {
+  display: flex;
+  border: 0.2rem solid rgb(43, 36, 32);
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  color: #7f7f7f;
+  font-family: "fontin_smallcaps", Verdana, Arial, Helvetica, sans-serif;
+  background-color: black;
+  min-width: 100%;
+  max-width: fit-content;
+  min-height: 42rem;
+  height: 45rem;
+  overflow: hidden;
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100%;
+  max-width: fit-content;
+  padding: 0.3rem 0 0.4rem 0;
+}
+.itemContent > * {
+  width: 100%;
+}
+
+.topWrapper {
+  float: top;
+  width: 100%;
+}
+
+.bottomWrapper {
+  display: flex;
+  float: bottom;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bottomWrapper .image {
+  max-height: 15rem;
+  padding-bottom: 5rem;
+}
+
+p {
+  margin: 0;
+  text-align: center;
+}
+.value {
+  color: white;
+}
+.value.augmented {
+  color: #88f;
+}
+.value.fire {
+  color: #960000;
+}
+.value.cold {
+  color: #366492;
+}
+.value.lightning {
+  color: gold;
+}
+.value.chaos {
+  color: #d02090;
+}
+.value.corrupted {
+  color: #d20000;
+}
+.itemHeader {
+  background-image: url(https://web.poecdn.com/image/item/popup/header-normal-left.png),
+    url(https://web.poecdn.com/image/item/popup/header-normal-right.png),
+    url(https://web.poecdn.com/image/item/popup/header-normal-middle.png);
+  background-position: left top, right top, left top;
+  background-repeat: no-repeat, no-repeat, repeat;
+  width: 100%;
+  height: 33px;
+  color: #c8c8c8;
+  font-size: 19px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.itemHeader.Magic {
+  background-image: url(https://web.poecdn.com/image/item/popup/header-magic-left.png),
+    url(https://web.poecdn.com/image/item/popup/header-magic-right.png),
+    url(https://web.poecdn.com/image/item/popup/header-magic-middle.png);
+  height: 33px;
+  color: #8888ff;
+}
+.itemHeader.Rare {
+  background-image: url(../../assets/imgs/header-double-rare-left.png),
+    url(../../assets/imgs/header-double-rare-right.png),
+    url(../../assets/imgs/header-double-rare-middle.png);
+  height: 53px;
+  color: #ffff77;
+}
+.itemHeader.Unique {
+  background-image: url(https://web.poecdn.com/image/item/popup/header-double-unique-left.png),
+    url(https://web.poecdn.com/image/item/popup/header-double-unique-right.png),
+    url(https://web.poecdn.com/image/item/popup/header-double-unique-middle.png);
+  height: 53px;
+  color: #af6025;
+}
+
+.itemHeader.Shaper .right,
+.itemHeader.Shaper .left {
+  position: relative;
+}
+
+.itemHeader::before,
+.itemHeader::after {
+  content: " ";
+  display: block;
+  top: calc(50% - 0.9rem);
+  position: absolute;
+  box-sizing: border-box;
+  height: 1.8rem;
+  width: 1.8rem;
+}
+.itemHeader.Shaper::before,
+.itemHeader.Shaper::after {
+  background: url(https://web.poecdn.com/image/item/popup/shaper-symbol.png)
+    center no-repeat;
+}
+.itemHeader.Elder::before,
+.itemHeader.Elder::after {
+  background: url(https://web.poecdn.com/image/item/popup/elder-symbol.png)
+    center no-repeat;
+}
+.itemHeader.Shaper::before,
+.itemHeader.Elder::before {
+  left: 0.2rem;
+}
+.itemHeader.Shaper::after,
+.itemHeader.Elder::after {
+  right: 0.2rem;
+}
+
+.separator {
+  background: url(https://web.poecdn.com/image/item/popup/seperator-normal.png)
+    center no-repeat;
+  margin: 1px 0;
+  height: 8px;
+  width: 100%;
+  background-size: contain;
+}
+.separator.Magic {
+  background: url(https://web.poecdn.com/image/item/popup/seperator-magic.png)
+    center no-repeat;
+}
+.separator.Rare {
+  background: url(https://web.poecdn.com/image/item/popup/seperator-rare.png)
+    center no-repeat;
+}
+.separator.Unique {
+  background: url(https://web.poecdn.com/image/item/popup/seperator-unique.png)
+    center no-repeat;
+}
+
+.requirements {
+  text-align: center;
+}

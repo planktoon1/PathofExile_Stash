@@ -1,0 +1,52 @@
+.optionsBar button {
+  border: 2px solid #593b1f;
+  border-width: 2px 2px 0 2px;
+  border-radius: 0.4rem 0.4rem 0 0;
+  color: #caa16d;
+  padding: 0.5rem 1rem 0.2rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #482d18;
+  font-size: 1rem;
+  min-height: 2.2rem;
+  position: relative;
+  min-height: fit-content;
+  margin: 0 3px;
+}
+
+.optionsBar button:before {
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.342);
+  border-width: 1px 1px 1px 1px;
+  border-radius: 0.4rem 0.4rem 0 0;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.optionsBar button:hover {
+  color: rgb(218, 173, 116);
+}
+.optionsBar button:disabled {
+  border-color: #212121;
+  background-color: #212121;
+  color: rgba(218, 174, 116, 0.274);
+}
+.optionsBar button:active,
+.optionsBar button.active {
+  color: rgb(253, 212, 159);
+  background-color: rgb(110, 69, 37);
+}
+.optionsBar button:focus {
+  outline: none;
+  background-color: rgb(100, 63, 34);
+}
+.optionsBar button.active:before {
+  border-width: 1px 1px 0 1px;
+}

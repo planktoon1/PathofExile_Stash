@@ -1,0 +1,70 @@
+.frontpage {
+  display: block;
+}
+
+.scrollable {
+  display: block;
+  overflow: auto;
+  height: 100%;
+}
+
+.stash {
+  padding: 0.2rem;
+  border: 2px solid rgb(110, 69, 37);
+  border-radius: 0.4rem 0.4rem 0 0;
+  background-color: black;
+  display: grid;
+  min-width: fit-content;
+
+  grid-template-columns: 28rem 49rem;
+  grid-template-rows: minmax(48rem, 85vh);
+
+  grid-template-areas: "itemInspector craftingArea";
+}
+
+.cursor-currency {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 40px;
+  pointer-events: none;
+}
+.itemInspect {
+  grid-area: itemInspector;
+}
+.itemAsText {
+  grid-area: itemAsText;
+}
+.craftingArea {
+  grid-area: craftingArea;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 2200px) {
+  .frontpage {
+    max-width: 1500px;
+  }
+  .stash {
+    grid-template-columns: 540px 1fr;
+    grid-template-rows: minmax(900px, 1fr) 1fr;
+
+    grid-template-areas:
+      "itemInspector craftingArea"
+      "itemAsText craftingArea";
+  }
+}
+@media screen and (max-width: 1000px) {
+  .frontpage {
+    width: 100%;
+  }
+  .stash {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(600px, 1fr);
+
+    grid-template-areas:
+      "itemInspector"
+      "craftingArea";
+  }
+}

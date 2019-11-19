@@ -1,0 +1,61 @@
+.selectedCurrency {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 6.8rem;
+  min-height: 10.5rem;
+  background: #1e2124;
+  padding: 0.4rem;
+  align-content: center;
+  text-align: center;
+}
+
+.currencyName {
+  padding: 0.3rem;
+  min-height: 1.1rem;
+}
+
+.selectedCurrency button {
+  font-size: 1rem;
+  border: 1px solid #444;
+  background-color: #333;
+  color: white;
+  padding: 0.6rem;
+  width: 3.2rem;
+}
+
+.selectedCurrency .lockCurrency {
+  float: left;
+}
+.selectedCurrency .trashCurrency {
+  float: right;
+}
+
+.selectedCurrency .image {
+  width: 5.9rem;
+  height: 6rem;
+  padding: 0 0.4rem;
+  position: relative;
+  background-color: #04041d;
+  border: 1px solid #473b2b;
+  border-collapse: collapse;
+  display: flex;
+}
+
+.selectedCurrency img.currency {
+  max-width: 5rem;
+  max-height: 5rem;
+  margin: auto;
+}
+
+.selectedCurrency .image::after {
+  content: attr(data-count);
+  font-size: 1.3rem;
+  position: absolute;
+  color: white;
+  left: 0.1rem;
+  top: 0;
+}
