@@ -47,11 +47,12 @@ function Frontpage() {
           <Item />
         </div>
         <CraftingOption option={craftingOption} />
-        <BrowserView>
-          <CursorCurrency selectedCurrency={selectedCurrency} />
-        </BrowserView>
+
         {selectedCurrency.selectedCurrency && <SelectedCurrency />}
       </div>
+      <BrowserView>
+        <CursorCurrency selectedCurrency={selectedCurrency} />
+      </BrowserView>
     </div>
   );
 }

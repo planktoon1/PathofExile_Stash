@@ -1,0 +1,7 @@
+input[type="text"].searchBar {
+  border: 1px solid #444;
+  background-color: #111;
+  color: gainsboro;
+  padding: 0.5rem;
+  width: 8rem;
+}

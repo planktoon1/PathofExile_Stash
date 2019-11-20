@@ -41,24 +41,19 @@ function GodPanel() {
 
   return (
     <div className="godPanel">
-      <button
-        className="godButtonContainer"
-        onClick={() => dispatch(resetItem())}
-      >
-        Reset Item
-      </button>
-      <button
-        className="godButtonContainer"
-        onClick={() => dispatch(resetStatistics())}
-      >
-        Reset Statistics
-      </button>
-      <button
-        className="godButtonContainer"
-        onClick={() => dispatch(removeCorruption())}
-      >
-        Remove Corruption
-      </button>
+      <div className="godButtonContainer">
+        <button onClick={() => dispatch(resetItem())}>Reset Item</button>
+      </div>
+      <div className="godButtonContainer">
+        <button onClick={() => dispatch(resetStatistics())}>
+          Reset Statistics
+        </button>
+      </div>
+      <div className="godButtonContainer">
+        <button onClick={() => dispatch(removeCorruption())}>
+          Remove Corruption
+        </button>
+      </div>
       <div className="godButtonContainer">
         <button className="inputButton" onClick={onSetItemlevel}>
           Set Item Level{" "}

@@ -42,14 +42,6 @@
   float: right;
 }
 
-.AvailableAffixes input[type="text"] {
-  border: 1px solid #444;
-  background-color: #111;
-  margin: 0 0 0 2rem;
-  color: gainsboro;
-  padding: 0.5rem;
-}
-
 .AvailableAffixes label.disabled {
   color: #444;
 }

@@ -5,6 +5,7 @@
 .scrollable {
   display: block;
   overflow: auto;
+  width: 100%;
 }
 
 .stash {
@@ -14,7 +15,6 @@
   background-color: black;
   display: grid;
   min-width: fit-content;
-
   grid-template-columns: 28rem 49rem;
   grid-template-rows: minmax(48rem, 85vh);
 
@@ -61,7 +61,7 @@
   }
   .stash {
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(600px, 1fr);
+    grid-template-rows: min-content 500px;
 
     grid-template-areas:
       "itemInspector"

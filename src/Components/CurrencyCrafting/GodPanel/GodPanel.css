@@ -25,12 +25,13 @@
   color: gainsboro;
   padding: 0.5rem;
   width: 3rem;
+  line-height: 100%;
 }
 
 .godPanel .godButtonContainer {
   flex: 1 0 45%;
   margin: 0.4rem 0.4rem;
-  width: 14rem;
+  min-width: 14rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,6 +40,12 @@
 
 .godPanel button.inputButton {
   padding-left: 20%;
+}
+
+@media screen and (max-width: 425px) {
+  .godPanel {
+    display: block;
+  }
 }
 
 .godPanel select {

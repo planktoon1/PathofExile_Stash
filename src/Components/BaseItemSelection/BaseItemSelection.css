@@ -12,6 +12,29 @@
   text-align: center;
   min-height: 1.4rem;
 }
+@media screen and (max-width: 610px) {
+  .selectBaseItem .data.damage,
+  .selectBaseItem .data.aps,
+  .selectBaseItem .data.crit,
+  .selectBaseItem .data.range,
+  .selectBaseItem .data.range,
+  .selectBaseItem .data.armour,
+  .selectBaseItem .data.evasion,
+  .selectBaseItem .data.energy,
+  .selectBaseItem .data.img {
+    display: none;
+  }
+}
+@media screen and (max-width: 500px) {
+  .selectBaseItem .table.data {
+    min-width: 4rem;
+    padding: 0;
+  }
+  .selectBaseItem .data.dps {
+    display: none;
+  }
+}
+
 .selectBaseItem .table.data.implicit {
   width: 66%;
   flex-grow: 4;
@@ -22,9 +45,7 @@
 .selectBaseItem .table.data.range {
   flex-grow: 1;
 }
-.selectBaseItem .table.data.level {
-  flex-grow: 1;
-}
+
 .selectBaseItem .table.data.name {
   min-width: 55%;
 }
@@ -65,7 +86,7 @@
 }
 .categorySelection {
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .selected-baseItem {
@@ -80,26 +101,21 @@
 select {
   color: white;
   background-color: #1e2124;
-  padding: 6px 20px;
+  padding: 0.3rem 0.6rem;
   text-align-last: center;
 }
 
 .selectBaseItem {
   height: 100%;
 }
-.selectBaseItem tbody {
-  background-color: #141414;
-  text-align: center;
-}
+
 .categorySelection {
   padding: 0.2rem 0;
 }
-.selectBaseItem th,
 .selected-baseItem,
 .categorySelection {
   background-color: #141414;
 }
-td.name,
 .selectedBaseItemText {
   color: rgb(253, 253, 215);
 }

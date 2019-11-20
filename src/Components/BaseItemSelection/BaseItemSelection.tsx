@@ -4,6 +4,7 @@ import { CraftingContext } from "../../contexts/ItemContext";
 import "./BaseItemSelection.css";
 import TableHead from "./tableHead";
 import TableRows from "./TableRows/TableRows";
+import SearchBar from "../AvailableAffixes/searchBar";
 
 function BaseItemSelection() {
   const { entityStateMeta } = useContext(CraftingContext);
@@ -37,7 +38,7 @@ function BaseItemSelection() {
       </div>
       <div className="categorySelection">
         <div>
-          Item Category:{" "}
+          Category:{" "}
           <select onChange={changeCategory} value={itemCategory}>
             <option>Armor</option>
             <option>Two Handed Weapon</option>
@@ -47,7 +48,7 @@ function BaseItemSelection() {
           </select>
         </div>
         <div>
-          Item Class:{" "}
+          Class:{" "}
           <select
             onChange={changeItemClass}
             value={itemClass}
@@ -56,6 +57,11 @@ function BaseItemSelection() {
             {itemClassElements}
           </select>
         </div>
+        <SearchBar
+          setSearchString={s => {
+            console.log("Search: " + s);
+          }}
+        />
       </div>
       <TableHead itemCategory={itemCategory} itemClass={itemClass} />
       <div className="scrollable">

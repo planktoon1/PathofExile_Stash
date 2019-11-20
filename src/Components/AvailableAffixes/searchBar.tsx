@@ -1,6 +1,6 @@
 import { debounce } from "lodash";
 import React, { useRef, useState } from "react";
-import "./AffixList.css";
+import "./searchBar.css";
 
 interface Props {
   setSearchString: (searchString: string) => void;
