@@ -17,54 +17,60 @@ function ArmourTableLayout({ item }) {
       implicitList.push(...getModDescription(mod));
     }
   }
-  const implicits = implicitList.map(implicit => <p>{implicit}</p>);
+  const implicits = implicitList.map(implicit => (
+    <p key={implicit}>{implicit}</p>
+  ));
 
   const handleClick = () => {
     dispatch(changeBaseItem(item.name));
   };
 
   return (
-    <colgroup className="rowGroup" onClick={handleClick} key={item.key}>
-      <tr>
-        <td className="icon" rowSpan={2}>
+    <div className="table flex rowGroup" onClick={handleClick}>
+      <div className="table flex container1">
+        <div className="table data img">
+          {" "}
           <img
             className="icon"
             title={item.name}
             src={getImgUrlFromBaseItem(item)}
             alt={item.name}
           />
-        </td>
-        <td className="name" rowSpan={2}>
-          {item.name}
-        </td>
-        <td className="level" title="Level">
-          {item.requirements.level}
-        </td>
-        <td className="Armour" title="Armour">
-          {item.properties.armour || 0}
-        </td>
-        <td className="Evasion" title="Evasion">
-          {item.properties.evasion || 0}
-        </td>
-        <td className="EnergyShield" title="Energy Shield">
-          {item.properties.energy_shield || 0}
-        </td>
-        <td className="ReqStr" title="Required Str">
-          {item.requirements.strength}
-        </td>
-        <td className="ReqDex" title="Required Dex">
-          {item.requirements.dexterity}
-        </td>
-        <td className="ReqInt" title="Required Int">
-          {item.requirements.intelligence}
-        </td>
-      </tr>
-      <tr>
-        <td className="implicit" title="Implicit Mod" colSpan={7}>
-          {implicits}
-        </td>
-      </tr>
-    </colgroup>
+        </div>
+        <div className="table data name">{item.name}</div>
+      </div>
+      <div className="table flex container2">
+        <div className="table flex container3">
+          <div className="table data level" title="Level">
+            {item.requirements.level}
+          </div>
+          <div className="table data armour" title="Armour">
+            {item.properties.armour || 0}
+          </div>
+          <div className="table data evasion" title="Evasion Rating">
+            {item.properties.evasion || 0}
+          </div>
+          <div className="table data energy" title="Energy Shield">
+            {item.properties.energy_shield || 0}
+          </div>
+          <div className="table data str" title="Required Str">
+            {item.requirements.strength}
+          </div>
+          <div className="table data dex" title="Required Dex">
+            {item.requirements.dexterity}
+          </div>
+          <div className="table data int" title="Required Int">
+            {item.requirements.intelligence}
+          </div>
+        </div>
+        <div className="table flex container4">
+          <div className="table data implicit" title="Implicit Mod">
+            {" "}
+            {implicits}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

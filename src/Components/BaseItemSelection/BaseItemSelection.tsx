@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { itemClasses } from "../../Common/Crafting/CraftingUtil";
 import { CraftingContext } from "../../contexts/ItemContext";
 import "./BaseItemSelection.css";
-import BaseItemTable from "./BaseItemTable";
+import TableHead from "./tableHead";
+import TableRows from "./TableRows/TableRows";
 
 function BaseItemSelection() {
   const { entityStateMeta } = useContext(CraftingContext);
@@ -56,8 +57,9 @@ function BaseItemSelection() {
           </select>
         </div>
       </div>
+      <TableHead itemCategory={itemCategory} itemClass={itemClass} />
       <div className="scrollable">
-        <BaseItemTable itemCategory={itemCategory} itemClass={itemClass} />
+        <TableRows itemCategory={itemCategory} itemClass={itemClass} />
       </div>
     </div>
   );
