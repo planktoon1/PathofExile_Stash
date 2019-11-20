@@ -3,6 +3,8 @@
   border: 1px solid #1e2124;
   color: white;
   padding: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .dropdown .dropDownButton {

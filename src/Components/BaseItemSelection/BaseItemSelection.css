@@ -88,11 +88,6 @@
 .selectBaseItem .table.flex.rowGroup {
   width: 100%;
 }
-.categorySelection {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 
 .selected-baseItem {
   display: flex;
@@ -113,9 +108,11 @@ select {
 .selectBaseItem {
   height: 100%;
 }
-
 .categorySelection {
-  padding: 0.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: space-between;
 }
 .selected-baseItem,
 .categorySelection {
