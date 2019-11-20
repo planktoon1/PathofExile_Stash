@@ -77,14 +77,14 @@ function TableHead({ itemCategory, itemClass }) {
         if (itemClass === "Shield") return armourTableHead;
         else if (itemClass === "Quiver") return jewelleryTableHead;
         break;
-      case "Jewellery":
+      case "Accessory":
         return jewelleryTableHead;
       default:
         return <></>;
     }
   };
 
-  return <>{tableHead()}</>;
+  return <div className="headerWrapper">{tableHead()}</div>;
 }
 
 export default TableHead;

@@ -13,9 +13,12 @@ function BaseItemSelection() {
   const [itemCategory, setItemCategory] = useState("Armor");
   const [itemClass, setItemClass] = useState("Gloves");
 
-  const itemClassElements = itemClasses[itemCategory].map(item => (
-    <option key={item}>{item}</option>
+  const itemClassElements: any[] = itemClasses[itemCategory].map(iClass => (
+    <option key={iClass}>{iClass}</option>
   ));
+  if (itemCategory !== "Offhand") {
+    itemClassElements.unshift(<option key="any">{"Any"}</option>);
+  }
 
   const selectedBaseItemText = selectedBaseItem
     ? selectedBaseItem.name
@@ -44,7 +47,7 @@ function BaseItemSelection() {
             <option>Two Handed Weapon</option>
             <option>Offhand</option>
             <option>One Handed Weapon</option>
-            <option>Jewellery</option>
+            <option>Accessory</option>
           </select>
         </div>
         <div>

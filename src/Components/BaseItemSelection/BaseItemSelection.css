@@ -5,6 +5,10 @@
 .selectBaseItem .table.flex.head {
   width: 96.9%;
 }
+.selectBaseItem .headerWrapper {
+  width: 100%;
+  border-bottom: 1px solid rgb(197, 197, 170);
+}
 
 .selectBaseItem .table.data {
   min-width: 4.5rem;
@@ -87,6 +91,7 @@
 .categorySelection {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .selected-baseItem {

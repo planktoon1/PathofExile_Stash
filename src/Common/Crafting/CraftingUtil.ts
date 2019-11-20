@@ -35,7 +35,7 @@ export const itemClasses: ItemClasses = {
     "FishingRod"
   ],
   Offhand: ["Shield", "Quiver"],
-  Jewellery: ["Amulet", "Ring", "Belt"]
+  Accessory: ["Amulet", "Ring", "Belt"]
 };
 
 export const getItemCategory = (
@@ -82,7 +82,7 @@ export const getModById = (modId: string): Mod | undefined => {
 
 export const getBaseItemsInDomain = (
   domain: string,
-  itemClass: string = "any"
+  itemClass: string[] = ["any"]
 ): BaseItem[] => {
   const baseItemsInDomain: BaseItem[] = [];
 
@@ -90,7 +90,10 @@ export const getBaseItemsInDomain = (
     if (itemData.domain !== domain) {
       continue;
     }
-    if (itemClass !== "any" && itemData.item_class !== itemClass) {
+    if (
+      !itemClass.includes("any") &&
+      !itemClass.includes(itemData.item_class)
+    ) {
       continue;
     }
     itemData.key = itemName;
