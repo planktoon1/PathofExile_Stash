@@ -41,9 +41,7 @@ function BaseItemSelection() {
   const { entityStateMeta } = useContext(CraftingContext);
   const selectedBaseItem = entityStateMeta.state.baseItem;
 
-  const [sortBy, setSortBy] = useState<SortByOptions>(
-    SortByOptions.ARMOUR_DESC
-  );
+  const [sortBy, setSortBy] = useState<SortByOptions>(SortByOptions.LEVEL_DESC);
   const [itemCategory, setItemCategory] = useState("Armor");
   const [itemClass, setItemClass] = useState("Gloves");
 

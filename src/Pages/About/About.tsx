@@ -99,16 +99,6 @@ function About() {
       </ul>
       <br />
       <ul style={{ listStyleType: "circle" }}>
-        <li>Rework base item selection</li>
-        <ul style={{ listStyleType: "circle", listStylePosition: "inside" }}>
-          <li>
-            Make it sortable by all columns that makes sense, and also
-            searchable
-          </li>
-        </ul>
-      </ul>
-      <br />
-      <ul style={{ listStyleType: "circle" }}>
         <li>Save state in browser so it's not lost on refresh</li>
         <ul style={{ listStyleType: "circle", listStylePosition: "inside" }}>
           <li>With this i will also look into making an "undo" feature</li>
@@ -125,9 +115,7 @@ function About() {
       <br />
       <br />
       <br />
-      <p>
-        <h2>Credits</h2>
-      </p>
+      <h2 style={{ textAlign: "center" }}>Credits</h2>
       <p>
         <a href="http://www.grindinggear.com/" style={{ color: "wheat" }}>
           Grinding Gear Games
