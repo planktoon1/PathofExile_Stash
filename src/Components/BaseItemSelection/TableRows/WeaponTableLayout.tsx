@@ -49,12 +49,7 @@ function WeaponTableLayout({ item }) {
             {(1000 / item.properties.attack_time).toFixed(2)}
           </div>
           <div className="table data dps" title="Damage Per Second">
-            {(
-              ((item.properties.physical_damage_min +
-                item.properties.physical_damage_max) /
-                2) *
-              (1000 / item.properties.attack_time)
-            ).toFixed(1)}
+            {(item.dps || 0).toFixed(1)}
           </div>
           <div className="table data str" title="Required Str">
             {item.requirements.strength}

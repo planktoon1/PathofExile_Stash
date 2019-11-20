@@ -113,6 +113,7 @@ export interface ItemClasses {
 
 export interface BaseItem {
   key?: string;
+  dps?: number;
   domain: string;
   drop_level: number;
   implicits: string[];

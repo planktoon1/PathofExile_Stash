@@ -6,10 +6,44 @@ import TableHead from "./tableHead";
 import TableRows from "./TableRows/TableRows";
 import SearchBar from "../AvailableAffixes/searchBar";
 
+export enum SortByOptions {
+  LEVEL_DESC,
+  LEVEL_ASC,
+  NAME_DESC,
+  NAME_ASC,
+  ARMOUR_DESC,
+  ARMOUR_ASC,
+  EVASION_DESC,
+  EVASION_ASC,
+  SHIELD_ASC,
+  SHIELD_DESC,
+  STR_ASC,
+  STR_DESC,
+  INT_ASC,
+  INT_DESC,
+  DEX_ASC,
+  DEX_DESC,
+  IMPLICIT_ASC,
+  IMPLICIT_DESC,
+  DPS_ASC,
+  DPS_DESC,
+  APS_ASC,
+  APS_DESC,
+  DAMAGE_ASC,
+  DAMAGE_DESC,
+  RANGE_ASC,
+  RANGE_DESC,
+  CRIT_ASC,
+  CRIT_DESC
+}
+
 function BaseItemSelection() {
   const { entityStateMeta } = useContext(CraftingContext);
   const selectedBaseItem = entityStateMeta.state.baseItem;
 
+  const [sortBy, setSortBy] = useState<SortByOptions>(
+    SortByOptions.ARMOUR_DESC
+  );
   const [itemCategory, setItemCategory] = useState("Armor");
   const [itemClass, setItemClass] = useState("Gloves");
 
@@ -66,9 +100,18 @@ function BaseItemSelection() {
           }}
         />
       </div>
-      <TableHead itemCategory={itemCategory} itemClass={itemClass} />
+      <TableHead
+        itemCategory={itemCategory}
+        setSortBy={setSortBy}
+        sortBy={sortBy}
+        itemClass={itemClass}
+      />
       <div className="scrollable">
-        <TableRows itemCategory={itemCategory} itemClass={itemClass} />
+        <TableRows
+          itemCategory={itemCategory}
+          sortBy={sortBy}
+          itemClass={itemClass}
+        />
       </div>
     </div>
   );

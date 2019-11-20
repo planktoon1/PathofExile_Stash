@@ -96,10 +96,20 @@ export const getBaseItemsInDomain = (
     ) {
       continue;
     }
+    if (
+      itemData.properties.attack_time &&
+      itemData.properties.physical_damage_min &&
+      itemData.properties.physical_damage_max
+    ) {
+      itemData.dps =
+        ((itemData.properties.physical_damage_min +
+          itemData.properties.physical_damage_max) /
+          2) *
+        (1000 / itemData.properties.attack_time);
+    }
     itemData.key = itemName;
     baseItemsInDomain.push(itemData);
   }
-  baseItemsInDomain.sort((a, b) => b.drop_level - a.drop_level);
   return baseItemsInDomain;
 };
 
