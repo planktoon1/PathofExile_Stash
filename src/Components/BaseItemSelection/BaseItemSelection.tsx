@@ -40,7 +40,7 @@ export enum SortByOptions {
 function BaseItemSelection() {
   const { entityStateMeta } = useContext(CraftingContext);
   const selectedBaseItem = entityStateMeta.state.baseItem;
-
+  const [searchString, setSearchString] = useState<string>("");
   const [sortBy, setSortBy] = useState<SortByOptions>(SortByOptions.LEVEL_DESC);
   const [itemCategory, setItemCategory] = useState("Armor");
   const [itemClass, setItemClass] = useState("Gloves");
@@ -92,11 +92,7 @@ function BaseItemSelection() {
             {itemClassElements}
           </select>
         </div>
-        <SearchBar
-          setSearchString={s => {
-            console.log("Search: " + s);
-          }}
-        />
+        <SearchBar setSearchString={setSearchString} />
       </div>
       <TableHead
         itemCategory={itemCategory}
@@ -109,6 +105,7 @@ function BaseItemSelection() {
           itemCategory={itemCategory}
           sortBy={sortBy}
           itemClass={itemClass}
+          searchString={searchString}
         />
       </div>
     </div>

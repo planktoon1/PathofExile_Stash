@@ -18,41 +18,55 @@ export interface TableRowsProps {
   itemCategory: string;
   itemClass: string;
   sortBy: SortByOptions;
+  searchString: string;
 }
 
-const TableRows = React.memo<any>(({ itemCategory, itemClass, sortBy }) => {
-  const itemClassesToFind =
-    itemClass === "Any" ? itemClasses[itemCategory] : [itemClass];
-  const baseItems = getBaseItemsInDomain("item", itemClassesToFind);
-  baseItems.sort(getSortFunction(sortBy));
-  switch (itemCategory) {
-    case "Armor":
-      return baseItems.map(item => (
-        <ArmourTableLayout key={item.key} item={item} />
-      ));
-    case "One Handed Weapon":
-    case "Two Handed Weapon":
-      return baseItems.map(item => (
-        <WeaponTableLayout key={item.key} item={item} />
-      ));
-    case "Offhand":
-      if (itemClass === "Shield")
-        return baseItems.map(item => (
-          <ArmourTableLayout key={item.key} item={item} />
-        ));
-      else if (itemClass === "Quiver")
-        return baseItems.map(item => (
-          <JewelleryTableLayout key={item.key} item={item} />
-        ));
-      break;
-    case "Accessory":
-      return baseItems.map(item => (
-        <JewelleryTableLayout key={item.key} item={item} />
-      ));
-    default:
-      return <></>;
+const TableRows = React.memo<TableRowsProps>(
+  ({ itemCategory, itemClass, sortBy, searchString }) => {
+    const itemClassesToFind =
+      itemClass === "Any" ? itemClasses[itemCategory] : [itemClass];
+    let baseItems = getBaseItemsInDomain("item", itemClassesToFind);
+    baseItems.sort(getSortFunction(sortBy));
+
+    // filter based on search string
+    if (!!searchString.trim()) {
+      const filter = searchString.toLowerCase();
+      baseItems = baseItems.filter(
+        item => item.name.toLowerCase().indexOf(filter) !== -1
+      );
+    }
+    const getTable = () => {
+      switch (itemCategory) {
+        case "Armor":
+          return baseItems.map(item => (
+            <ArmourTableLayout key={item.key} item={item} />
+          ));
+        case "One Handed Weapon":
+        case "Two Handed Weapon":
+          return baseItems.map(item => (
+            <WeaponTableLayout key={item.key} item={item} />
+          ));
+        case "Offhand":
+          if (itemClass === "Shield")
+            return baseItems.map(item => (
+              <ArmourTableLayout key={item.key} item={item} />
+            ));
+          else if (itemClass === "Quiver")
+            return baseItems.map(item => (
+              <JewelleryTableLayout key={item.key} item={item} />
+            ));
+          break;
+        case "Accessory":
+          return baseItems.map(item => (
+            <JewelleryTableLayout key={item.key} item={item} />
+          ));
+        default:
+          return <></>;
+      }
+    };
+    return <div>{getTable()}</div>;
   }
-});
+);
 
 export default TableRows;
 
