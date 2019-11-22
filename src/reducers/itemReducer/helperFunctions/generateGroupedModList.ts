@@ -1,6 +1,5 @@
 import { EntityStateMeta, Mod } from "../../../Common/Crafting/interfaces";
 import { get_spawn_weight } from "../../../Common/Crafting/CraftingUtil";
-import { getModDescription } from "../../../Common/Crafting/Translation";
 import { getAffixGroups } from "./getAffixGroups";
 import { getNumberOfFreePrefixes } from "./getNumberOfFreePrefixes";
 import { getNumberOfFreeSuffixes } from "./getNumberOfFreeSuffixes";
@@ -50,8 +49,7 @@ export const generateGroupedModList = (
         available: true,
         availabilityReasons: [],
         modType: getModtype(mod)
-      },
-      description: []
+      }
     };
 
     // exclude modTypes
@@ -119,7 +117,6 @@ export const generateGroupedModList = (
         `Mod weight is 0, a tag is either missing from item or the item has a tag that excludes this mod`
       );
     }
-    modWMetaData.description = getModDescription(modWMetaData.mod, true);
 
     if (modWMetaData.metaData.available) {
       modWMetaData.metaData.spawnChance = getSpawnChance(stateMeta, mod);
@@ -139,9 +136,7 @@ export const generateGroupedModList = (
         tiersAvailable: modWMetaData.metaData.available ? 1 : 0,
         spawnChance: modWMetaData.metaData.spawnChance,
         modType: getModtype(mod),
-        description: getModDescription(modWMetaData.mod)
-          .filter(e => !!e)
-          .join(" / ")
+        description: mod.description
       };
     }
   }
@@ -179,7 +174,6 @@ export interface ModWithMetaData {
     availabilityReasons: string[];
     modType: ModTypes;
   };
-  description: string[];
 }
 
 export enum ModTypes {

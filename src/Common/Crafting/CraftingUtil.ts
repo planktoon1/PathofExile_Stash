@@ -3,12 +3,12 @@ import {
   BaseItemDict,
   ItemClasses,
   Mod,
-  ModOutputDict,
   TranslationDict,
   ItemClassDict,
-  ItemTypes
+  ItemTypes,
+  ModDict
 } from "./interfaces";
-export const MODLIST: ModOutputDict = require("../../assets/poe_data/mods_domain_item.min.json");
+export const MODLIST: ModDict = require("../../assets/poe_data/processed_mod_list.min.json");
 export const BASEITEMS: BaseItemDict = require("../../assets/poe_data/base_items.min.json");
 export const MODTRANSLATIONS: TranslationDict = require("../../assets/poe_data/stat_translations.min.json");
 export const ITEMCLASSES: ItemClassDict = require("../../assets/poe_data/item_classes.min.json");
@@ -73,11 +73,7 @@ export const getImgUrlFromBaseItem = (
 };
 
 export const getModById = (modId: string): Mod | undefined => {
-  const modOutPutData = MODLIST[modId];
-  if (!modOutPutData) return undefined;
-
-  const modData = { ...modOutPutData, key: modId };
-  return modData;
+  return MODLIST[modId];
 };
 
 export const getBaseItemsInDomain = (
@@ -123,7 +119,7 @@ export const getBaseItemFromName = (name: string): BaseItem => {
 };
 
 export const generate_spawnable_mod_list = (
-  mod_list: ModOutputDict = MODLIST,
+  mod_list: ModDict = MODLIST,
   domain: string = "item",
   generation_type: string | string[],
   level: number = 1,
@@ -136,7 +132,7 @@ export const generate_spawnable_mod_list = (
   }
   const mods: Mod[] = [];
 
-  for (let [modName, modData] of Object.entries(mod_list)) {
+  for (let [, modData] of Object.entries(mod_list)) {
     if (level < modData.required_level) {
       continue;
     }
@@ -153,8 +149,7 @@ export const generate_spawnable_mod_list = (
     if (!ignoreTags && get_spawn_weight(modData, tags) === 0) {
       continue;
     }
-    const mod = { ...modData, key: modName };
-    mods.push(mod);
+    mods.push(modData);
   }
   return mods;
 };

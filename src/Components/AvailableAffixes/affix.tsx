@@ -56,7 +56,7 @@ const Affix: React.FunctionComponent<Props> = ({ affixData }) => {
         {`${spawnChance.toFixed(2)}%`}
       </div>
       <div className="affixitem right">
-        {affixData.description.filter(e => !!e).join(" / ")}
+        {affixData.mod.description_only_values}
         <div className="buttonArea">{getActionButton()}</div>
       </div>
     </div>

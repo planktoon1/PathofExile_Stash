@@ -158,6 +158,8 @@ export interface BaseItem {
 
 export interface Mod {
   key: string;
+  description: string;
+  description_only_values: string;
   adds_tags: string[];
   domain: string;
   generation_type: string;
