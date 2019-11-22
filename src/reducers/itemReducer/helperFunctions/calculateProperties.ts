@@ -65,7 +65,11 @@ export const calculateProperties = (stateMeta: EntityStateMeta) => {
   // Add multipliers
   for (const prop in newCalculatedProperties) {
     if (propertyMultipliers[prop]) {
-      newCalculatedProperties[prop] *= 1 + propertyMultipliers[prop] / 100;
+      if (prop === "attack_time") {
+        newCalculatedProperties[prop] /= 1 + propertyMultipliers[prop] / 100;
+      } else {
+        newCalculatedProperties[prop] *= 1 + propertyMultipliers[prop] / 100;
+      }
     }
   }
   stateMeta.state.calculatedProperties = newCalculatedProperties;

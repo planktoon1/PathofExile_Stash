@@ -53,7 +53,7 @@ const Affix: React.FunctionComponent<Props> = ({ affixData }) => {
         className="spawnChance"
         title={`Spawn chance ${spawnChance.toFixed(6)}%`}
       >
-        {`${spawnChance.toFixed(1)}%`}
+        {`${spawnChance.toFixed(2)}%`}
       </div>
       <div className="affixitem right">
         {affixData.description.filter(e => !!e).join(" / ")}
