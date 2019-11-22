@@ -1,18 +1,18 @@
 {
     "currencies": {
-        "chaos": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png?v=c60aa876dd6bab31174df91b1da1b4f9",
-        "alch": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeToRare.png?v=89c110be97333995522c7b2c29cae728",
-        "exa": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyAddModToRare.png?v=1745ebafbd533b6f91bccf588ab5efc5",
-        "alt": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollMagic.png?v=6d9520174f6643e502da336e76b730d3",
-        "tra": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeToMagic.png?v=333b8b5e28b73c62972fc66e7634c5c8",
-        "aug": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyAddModToMagic.png?v=97e63b85807f2419f4208482fd0b4859",
-        "regal": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeMagicToRare.png?v=1187a8511b47b35815bd75698de1fa2a",
-        "orb": "https://web.poecdn.com/image/Art/2DItems/Currency/AnnullOrb.png?v=f9a0f8b21515c8abf517e9648cfc7455",
-        "vaal": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyVaal.png?v=64114709d67069cd665f8f1a918cd12a",
-        "scour": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyConvertToNormal.png?v=15e3ef97f04a39ae284359309697ef7d",
-        "blessed": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyImplicitMod.png?v=472eeef04846d8a25d65b3d4f9ceecc8",
-        "divine": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyModValues.png?v=0ad99d4a2b0356a60fa8194910d80f6b",
-        "scr": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyArmourQuality.png?v=251e204e4ec325f75ce8ef75b2dfbeb8",
-        "whe": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyWeaponQuality.png?v=d2ce9167e23a74cef5d8465433e86482"
+        "chaos": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png",
+        "alch": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeToRare.png",
+        "exa": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyAddModToRare.png",
+        "alt": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollMagic.png",
+        "tra": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeToMagic.png",
+        "aug": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyAddModToMagic.png",
+        "regal": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeMagicToRare.png",
+        "orb": "https://web.poecdn.com/image/Art/2DItems/Currency/AnnullOrb.png",
+        "vaal": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyVaal.png",
+        "scour": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyConvertToNormal.png",
+        "blessed": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyImplicitMod.png",
+        "divine": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyModValues.png",
+        "scr": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyArmourQuality.png",
+        "whe": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyWeaponQuality.png"
     }
 }
