@@ -308,7 +308,8 @@ export const getModDescription = (
           );
 
           if (excludeText) {
-            entryString = formattedValue;
+            entryString =
+              i === 0 ? formattedValue : `${entryString} / ${formattedValue}`;
           } else {
             entryString = entryString.replace(searchString, formattedValue);
           }
