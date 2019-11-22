@@ -16,9 +16,12 @@
   display: grid;
   min-width: fit-content;
   grid-template-columns: 28rem 49rem;
-  grid-template-rows: minmax(48rem, 85vh);
+  grid-template-rows: 45rem 13rem;
+  grid-template-rows: 45rem calc(85vh - 45rem);
 
-  grid-template-areas: "itemInspector craftingArea";
+  grid-template-areas:
+    "itemInspector craftingArea"
+    "itemStats craftingArea";
 }
 
 .cursor-currency {
@@ -27,6 +30,9 @@
   left: 0px;
   height: 40px;
   pointer-events: none;
+}
+.itemStats {
+  grid-area: itemStats;
 }
 .itemInspect {
   grid-area: itemInspector;
@@ -61,10 +67,11 @@
   }
   .stash {
     grid-template-columns: 1fr;
-    grid-template-rows: min-content 500px;
+    grid-template-rows: min-content 500px min-content;
 
     grid-template-areas:
       "itemInspector"
-      "craftingArea";
+      "craftingArea"
+      "itemStats";
   }
 }

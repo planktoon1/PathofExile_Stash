@@ -12,6 +12,7 @@ import { changeBaseItem } from "../../reducers/itemReducer/actions/changeBaseIte
 import "./Frontpage.css";
 import { BrowserView } from "react-device-detect";
 import { debounce } from "lodash";
+import ItemStats from "../../Components/ItemStats";
 
 function Frontpage() {
   const {
@@ -46,6 +47,7 @@ function Frontpage() {
         <div className="itemInspect" onClick={handleClick}>
           <Item />
         </div>
+        <ItemStats />
         <CraftingOption option={craftingOption} />
 
         {selectedCurrency.selectedCurrency && <SelectedCurrency />}
