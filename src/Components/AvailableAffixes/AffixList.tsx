@@ -2,6 +2,8 @@ import React from "react";
 import { GroupedMods } from "../../reducers/itemReducer/helperFunctions/generateGroupedModList";
 import Affix from "./affix";
 import "./AffixList.css";
+import "../../Common/collapsible/collapsible.css";
+import { onCollapsible } from "../../Common/collapsible/collapsible";
 
 interface Props {
   groupedAffixes: GroupedMods;
@@ -9,17 +11,6 @@ interface Props {
 
 const AffixList: React.FunctionComponent<Props> = ({ groupedAffixes }) => {
   const affixList = () => {
-    const onCollapsible = (e: React.MouseEvent) => {
-      const content: any = e.currentTarget.nextElementSibling;
-      if (content && content.classList.contains("collapsibleContent")) {
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
-      }
-    };
-
     // Make a list of the mods to be displayed
     const affixList: any[] = [];
     for (const groupName in groupedAffixes) {

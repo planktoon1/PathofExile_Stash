@@ -6,22 +6,22 @@
   background-color: #0f0f0f;
 }
 
-.collapsible .table .alignLeft {
+.AvailableAffixes .collapsible .table .alignLeft {
   text-align: left;
   width: 33%;
 }
-.collapsible .table .alignRight {
+.AvailableAffixes .collapsible .table .alignRight {
   text-align: right;
   width: 33%;
 }
 
-.collapsible .table {
+.AvailableAffixes .collapsible .table {
   width: 100%;
   padding: 0 2rem;
   text-align: center;
 }
 
-button.collapsible {
+.AvailableAffixes button.collapsible {
   cursor: pointer;
   font-size: 1rem;
   border: 1px solid #444;
@@ -30,14 +30,8 @@ button.collapsible {
   width: 100%;
 }
 
-button.collapsible td {
+.AvailableAffixes button.collapsible td {
   color: #888;
-}
-
-.collapsibleContent {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.1s ease-out;
 }
 
 .collapsibleContent .affix .info,
@@ -56,7 +50,7 @@ button.collapsible td {
   color: wheat;
 }
 
-.collapsibleContent {
+.AvailableAffixes .collapsibleContent {
   padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
