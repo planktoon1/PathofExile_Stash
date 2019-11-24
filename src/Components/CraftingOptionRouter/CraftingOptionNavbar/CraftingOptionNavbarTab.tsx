@@ -17,12 +17,16 @@ export default function CraftingOptionNavbarTab({
   name,
   disabled = false
 }: Props) {
+  const onChangeCraftingOption = e => {
+    setCraftingOption(craftingOption);
+  };
+
   return (
     <button
       title={disabled ? notImplementedString : ""}
       className={currentCraftingOption === craftingOption ? "active" : ""}
       disabled={disabled}
-      onClick={() => setCraftingOption(craftingOption)}
+      onClick={onChangeCraftingOption}
     >
       {name}
     </button>

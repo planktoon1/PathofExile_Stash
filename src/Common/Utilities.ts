@@ -31,5 +31,9 @@ export function mapObject(object: object, callback) {
   });
 }
 
+export function scrollToElement(element: Element) {
+  element.scrollIntoView(true);
+}
+
 export const notImplementedString: string =
   "This feature is not implemented yet";

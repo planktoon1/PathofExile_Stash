@@ -13,6 +13,7 @@ import "./Frontpage.css";
 import { BrowserView } from "react-device-detect";
 import { debounce } from "lodash";
 import ItemStats from "../../Components/ItemStats";
+import { scrollToElement } from "../../Common/Utilities";
 
 function Frontpage() {
   const {
@@ -29,6 +30,14 @@ function Frontpage() {
     dispatch(changeBaseItem("Maraketh Bow"));
   }, [dispatch]);
 
+  const onSetCraftingOption = (option: string) => {
+    setCraftingOption(option);
+    const craftingArea = document.getElementsByClassName("craftingArea")[0];
+    if (craftingArea) {
+      scrollToElement(craftingArea);
+    }
+  };
+
   const handleClick = e => {
     if (!selectedCurrency.selectedCurrency) {
       return;
@@ -41,7 +50,7 @@ function Frontpage() {
     <div className="frontpage">
       <CraftingOptionNavbar
         craftingOption={craftingOption}
-        setCraftingOption={setCraftingOption}
+        setCraftingOption={onSetCraftingOption}
       />
       <div className="stash">
         <div className="itemInspect" onClick={handleClick}>

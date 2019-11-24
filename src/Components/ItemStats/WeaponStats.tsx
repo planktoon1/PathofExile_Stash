@@ -1,6 +1,11 @@
 import React from "react";
 import { EntityStateMeta } from "../../Common/Crafting/interfaces";
 import "./ItemStats.css";
+import {
+  faArrowCircleDown,
+  faArrowUp
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { onCollapsible } from "../../Common/collapsible/collapsible";
 import "../../Common/collapsible/collapsible.css";
 
@@ -27,7 +32,6 @@ const WeaponStats: React.FC<Props> = ({ entityStateMeta }) => {
       entityStateMeta.state.calculatedProperties.lightning_damage_max) /
     2;
   const avgEleDmg = avgFireDmg + avgColdDmg + avgLightningDmg;
-  console.log(`f: ${avgFireDmg}  c: ${avgColdDmg}  l: ${avgLightningDmg}`);
 
   const physDps = aps * avgPhysDmg;
   const eleDps = aps * avgEleDmg;
@@ -36,10 +40,16 @@ const WeaponStats: React.FC<Props> = ({ entityStateMeta }) => {
   return (
     <div className="weaponStats">
       <button className="collapsible" onClick={onCollapsible}>
+        <div></div>
         <div className="edps">
           Elemental DPS:{" "}
-          <span className="itemStat final">{eleDps.toFixed(4)}</span>
+          <span className="itemStat final">{eleDps.toFixed(4)}</span>{" "}
         </div>
+        <FontAwesomeIcon
+          title="Click to get more detailed info"
+          className="arrowIcon"
+          icon={faArrowCircleDown}
+        />
       </button>
       <div className="collapsibleContent">
         {avgFireDmg > 0 && avgFireDmgJSX()}
@@ -67,10 +77,16 @@ const WeaponStats: React.FC<Props> = ({ entityStateMeta }) => {
       </div>
 
       <button className="collapsible" onClick={onCollapsible}>
+        <div></div>
         <div className="pdps">
           Physical DPS:{" "}
           <span className="itemStat final">{physDps.toFixed(4)}</span>
         </div>
+        <FontAwesomeIcon
+          title="Click to get more detailed info"
+          className="arrowIcon"
+          icon={faArrowCircleDown}
+        />
       </button>
       <div className="collapsibleContent">
         <div className="calculation">
@@ -94,16 +110,20 @@ const WeaponStats: React.FC<Props> = ({ entityStateMeta }) => {
         </div>
       </div>
       <button className="collapsible" onClick={onCollapsible}>
+        <div></div>
         <div className="dps">
           Total DPS: <span className="itemStat final">{dps.toFixed(4)}</span>
         </div>
+        <FontAwesomeIcon
+          title="Click to get more detailed info"
+          className="arrowIcon"
+          icon={faArrowCircleDown}
+        />
       </button>
       <div className="collapsibleContent">
         <div className="calculation">
-          <span title="Attacks Per Second">{aps.toFixed(2)}</span> * (
-          <span title="Average Physical Damage">{avgPhysDmg.toFixed(2)}</span> +{" "}
-          <span title="Average Elemental Damage">{avgEleDmg.toFixed(2)}</span>)
-          ={" "}
+          <span title="Physical Damage Per Second">{physDps.toFixed(2)}</span> +{" "}
+          <span title="Elemental Damage Per Second">{eleDps.toFixed(2)}</span> ={" "}
           <span title="Total Damage Per Second" className="final">
             {dps.toFixed(4)} DPS
           </span>
@@ -115,7 +135,7 @@ const WeaponStats: React.FC<Props> = ({ entityStateMeta }) => {
   function avgFireDmgJSX() {
     return (
       <>
-        <div className="calculation fire">
+        <div className="calculation">
           (
           <span title="Minimum Fire Damage">
             {entityStateMeta.state.calculatedProperties.fire_damage_min}
@@ -125,7 +145,10 @@ const WeaponStats: React.FC<Props> = ({ entityStateMeta }) => {
             {entityStateMeta.state.calculatedProperties.fire_damage_max}
           </span>
           ) / 2 ={" "}
-          <span title="Average Fire Damage"> {avgFireDmg} avgFireDmg</span>
+          <span title="Average Fire Damage" className="fire">
+            {" "}
+            {avgFireDmg} avgFireDmg
+          </span>
         </div>
       </>
     );
@@ -134,7 +157,7 @@ const WeaponStats: React.FC<Props> = ({ entityStateMeta }) => {
   function avgColdDmgJSX() {
     return (
       <>
-        <div className="calculation cold">
+        <div className="calculation">
           (
           <span title="Minimum Cold Damage">
             {entityStateMeta.state.calculatedProperties.cold_damage_min}
@@ -144,7 +167,10 @@ const WeaponStats: React.FC<Props> = ({ entityStateMeta }) => {
             {entityStateMeta.state.calculatedProperties.cold_damage_max}
           </span>
           ) / 2 ={" "}
-          <span title="Average Cold Damage"> {avgColdDmg} avgColdDmg</span>
+          <span title="Average Cold Damage" className="cold">
+            {" "}
+            {avgColdDmg} avgColdDmg
+          </span>
         </div>
       </>
     );
@@ -153,7 +179,7 @@ const WeaponStats: React.FC<Props> = ({ entityStateMeta }) => {
   function avgLightningDmgJSX() {
     return (
       <>
-        <div className="calculation lightning">
+        <div className="calculation">
           (
           <span title="Minimum Lightning Damage">
             {entityStateMeta.state.calculatedProperties.lightning_damage_min}
@@ -163,7 +189,7 @@ const WeaponStats: React.FC<Props> = ({ entityStateMeta }) => {
             {entityStateMeta.state.calculatedProperties.lightning_damage_max}
           </span>
           ) / 2 ={" "}
-          <span title="Average Lightning Damage">
+          <span title="Average Lightning Damage" className="lightning">
             {" "}
             {avgLightningDmg} avgLtgDmg
           </span>

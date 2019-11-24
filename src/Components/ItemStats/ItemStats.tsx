@@ -19,6 +19,7 @@ const ItemStats = () => {
   } else if (category === "Armor") {
     itemStatType = ItemStatTypes.ARMOUR;
   }
+
   return (
     <div className="itemStats scrollable">
       <WeaponStats entityStateMeta={entityStateMeta} />
