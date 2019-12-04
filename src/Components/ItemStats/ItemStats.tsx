@@ -20,9 +20,19 @@ const ItemStats = () => {
     itemStatType = ItemStatTypes.ARMOUR;
   }
 
+  const getItemStats = () => {
+    switch (itemStatType) {
+      case ItemStatTypes.WEAPON:
+        return <WeaponStats entityStateMeta={entityStateMeta} />
+      default:
+        return <div></div>;
+    }
+
+  }
+
   return (
     <div className="itemStats scrollable">
-      <WeaponStats entityStateMeta={entityStateMeta} />
+      {getItemStats()}
     </div>
   );
 };
