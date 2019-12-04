@@ -6,7 +6,7 @@ function Item() {
   const { entityStateMeta } = useContext(CraftingContext);
   const item = entityStateMeta.state;
   return (
-    <div className="itemWrapper">
+    <div id="itemWrapper" className="itemWrapper">
       {item.baseItem && <ItemPresentation item={entityStateMeta.state} />}
     </div>
   );

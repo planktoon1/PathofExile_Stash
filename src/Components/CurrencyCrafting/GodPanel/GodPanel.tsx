@@ -9,7 +9,7 @@ import { resetStatistics } from "../../../reducers/itemReducer/actions/resetStat
 import { setItemType as changeItemType } from "../../../reducers/itemReducer/actions/setItemType";
 import { ItemTypes } from "../../../Common/Crafting/interfaces";
 
-export interface Props {}
+export interface Props { }
 
 function GodPanel() {
   const { entityStateMeta } = useContext(CraftingContext);
@@ -21,22 +21,20 @@ function GodPanel() {
 
   const handleIlvlChange = e => {
     const itemLevel = e.target.validity.valid ? Number(e.target.value) : iLvl;
+    let validItemLevel = 0;
     if (itemLevel < 0) {
-      setILvl(0);
+      validItemLevel = 0;
     } else if (itemLevel > 999) {
-      setILvl(999);
+      validItemLevel = 999;
     } else {
-      setILvl(itemLevel);
+      validItemLevel = itemLevel;
     }
-  };
-  const onSetItemlevel = () => {
-    dispatch(setItemLevel(iLvl));
+    setILvl(validItemLevel);
+    dispatch(setItemLevel(validItemLevel));
   };
   const onSelectItemType = e => {
     setItemType(e.target.value);
-  };
-  const onSetItemType = () => {
-    dispatch(changeItemType(itemType));
+    dispatch(changeItemType(e.target.value));
   };
 
   return (
@@ -55,8 +53,8 @@ function GodPanel() {
         </button>
       </div>
       <div className="godButtonContainer">
-        <button className="inputButton" onClick={onSetItemlevel}>
-          Set Item Level{" "}
+        <button className="inputButton" disabled>
+          Item Level:{" "}
         </button>{" "}
         <input
           type="text"
@@ -66,8 +64,8 @@ function GodPanel() {
         ></input>
       </div>
       <div className="godButtonContainer">
-        <button className="inputButton" onClick={onSetItemType}>
-          Set Item Type{" "}
+        <button className="inputButton" disabled>
+          Item Type:{" "}
         </button>{" "}
         <select
           className="itemType"

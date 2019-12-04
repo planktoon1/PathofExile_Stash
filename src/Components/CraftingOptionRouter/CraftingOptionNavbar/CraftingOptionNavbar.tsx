@@ -7,7 +7,7 @@ export default function CraftingOptionNavbar({
   setCraftingOption
 }) {
   return (
-    <div className="optionsBar">
+    <div id="optionsBar" className="optionsBar">
       <CraftingOptionNavbarTab
         setCraftingOption={setCraftingOption}
         currentCraftingOption={craftingOption}

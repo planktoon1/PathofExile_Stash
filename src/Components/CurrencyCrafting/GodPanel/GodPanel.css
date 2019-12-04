@@ -9,6 +9,9 @@
   align-items: center;
 }
 
+.godPanel button:disabled {
+  cursor: initial;
+}
 .godPanel button {
   font-size: 1rem;
   border: 1px solid #444;

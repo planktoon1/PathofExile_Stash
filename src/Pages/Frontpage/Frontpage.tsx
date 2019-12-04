@@ -25,7 +25,7 @@ function Frontpage() {
   const [craftingOption, setCraftingOption] = useState("currencyCrafting");
   useShiftKeyCurrencyLockToggle();
   usePopUps();
-
+  useDeselectCurrencyOnPressOutsideItem(currencyLocked, deselectCurrency, selectedCurrency);
   useEffect(() => {
     dispatch(changeBaseItem("Maraketh Bow"));
   }, [dispatch]);
@@ -52,7 +52,7 @@ function Frontpage() {
         craftingOption={craftingOption}
         setCraftingOption={onSetCraftingOption}
       />
-      <div className="stash">
+      <div className="stash" id="stash">
         <div className="itemInspect" onClick={handleClick}>
           <Item />
         </div>
@@ -74,13 +74,56 @@ function useShiftKeyCurrencyLockToggle() {
   const { currencyLocked, setCurrencyLocked } = useContext(CraftingContext);
   useEffect(() => {
     const downHandler = e => {
-      if (e.keyCode === 16) setCurrencyLocked(!currencyLocked);
+      if (e.keyCode === 16) setCurrencyLocked(true);
     };
-    const debounced = debounce(downHandler, 100, { maxWait: 300 });
-    document.addEventListener("keydown", debounced);
+    const upHandler = e => {
+      if (e.keyCode === 16) setCurrencyLocked(false);
+    };
+    const debouncedDown = debounce(downHandler, 100, { maxWait: 300 });
+    document.addEventListener("keydown", debouncedDown);
+    const debouncedUp = debounce(upHandler, 100, { maxWait: 300 });
+    document.addEventListener("keyup", debouncedUp);
     // Remove event listeners on cleanup
     return () => {
-      document.removeEventListener("keydown", debounced);
+      document.removeEventListener("keydown", debouncedDown);
+      document.removeEventListener("keyup", debouncedUp);
     };
   }, [currencyLocked, setCurrencyLocked]);
 }
+
+function useDeselectCurrencyOnPressOutsideItem(currencyLocked, deselectCurrency, selectedCurrency) {
+  useEffect(() => {
+    const stash = document.getElementById("stash");
+    const optionsBar = document.getElementById("optionsBar");
+
+    const outsideClickListener = event => {
+      if (currencyLocked) {
+        return
+      }
+
+      if (selectedCurrency.selectedCurrency === null) {
+        return
+      }
+      if (stash) {
+        if ((stash.contains(event.target))) { // or use: event.target.closest(selector) === null
+          return
+        }
+      }
+      if (optionsBar) {
+        if ((optionsBar.contains(event.target))) { // or use: event.target.closest(selector) === null
+          return
+        }
+      }
+      deselectCurrency();
+    }
+
+    document.addEventListener('click', outsideClickListener)
+    // Remove event listeners on cleanup
+    return () => {
+      document.removeEventListener('click', outsideClickListener);
+    };
+
+  }, [deselectCurrency, selectedCurrency]);
+}
+
+

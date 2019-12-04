@@ -8,7 +8,7 @@ function CurrencyCrafting() {
   const { entityStateMeta, selectCurrency } = useContext(CraftingContext);
   return (
     <div className="craftingArea currencyCraft">
-      <div className="currencies">
+      <div id="currencies" className="currencies">
         <button
           className="crafting-currency"
           data-count={

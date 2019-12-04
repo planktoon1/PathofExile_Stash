@@ -26,7 +26,7 @@ export function isIterable(obj) {
 }
 
 export function mapObject(object: object, callback) {
-  return Object.keys(object).map(function(key) {
+  return Object.keys(object).map(function (key) {
     return callback(key, object[key]);
   });
 }
