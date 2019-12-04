@@ -1,5 +1,6 @@
 html {
   font-size: 13px;
+  scroll-behavior: smooth;
 }
 
 body {

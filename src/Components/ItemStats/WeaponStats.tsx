@@ -1,13 +1,10 @@
-import React from "react";
-import { EntityStateMeta } from "../../Common/Crafting/interfaces";
-import "./ItemStats.css";
-import {
-  faArrowCircleDown,
-  faArrowUp
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 import { onCollapsible } from "../../Common/collapsible/collapsible";
 import "../../Common/collapsible/collapsible.css";
+import { EntityStateMeta } from "../../Common/Crafting/interfaces";
+import "./ItemStats.css";
 
 interface Props {
   entityStateMeta: EntityStateMeta;
