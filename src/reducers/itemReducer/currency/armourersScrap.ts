@@ -6,7 +6,10 @@ import { itemClasses } from "../../../Common/Crafting/CraftingUtil";
 import { checkItemClass } from "../helperFunctions/checkItemClass";
 
 export const armourersScrap = (stateMeta: EntityStateMeta) => {
-  if (!checkItemClass(stateMeta, ...itemClasses["Armor"])) {
+  if (
+    stateMeta.state.baseItem.item_class !== "Shield" &&
+    !checkItemClass(stateMeta, ...itemClasses["Armor"])
+  ) {
     stateMeta.popUps.push({
       variant: PopUpVariant.ERROR,
       message: `Armourer's Scrap can only be used on armour`
