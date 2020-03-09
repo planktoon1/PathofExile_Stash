@@ -1,5 +1,5 @@
-import { getModDescription } from "../src/Common/Crafting/Translation";
 import { ModDict, ModOutputDict } from "../src/Common/Crafting/interfaces";
+import { getModDescription } from "../src/Common/Crafting/Translation";
 const fs = require("fs");
 const MODLIST: ModOutputDict = require("../src/assets/poe_data/mods.min.json");
 
