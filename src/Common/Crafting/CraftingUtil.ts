@@ -19,6 +19,7 @@ export const itemClasses: ItemClasses = {
   "One Handed Weapon": [
     "Claw",
     "Dagger",
+    "Rune Dagger",
     "Wand",
     "One Hand Sword",
     "Thrusting One Hand Sword",
