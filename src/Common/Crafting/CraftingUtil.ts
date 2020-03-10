@@ -15,7 +15,7 @@ export const ITEMCLASSES: ItemClassDict = require("../../assets/poe_data/item_cl
 
 // Used as options in the base items selection, therefore not including all posibilitis, like jewels.
 export const itemClasses: ItemClasses = {
-  Armor: ["Gloves", "Boots", "Body Armour", "Helmet"],
+  Armor: ["Gloves", "Boots", "Body Armour", "Helmet", "Shield"],
   "One Handed Weapon": [
     "Claw",
     "Dagger",
@@ -34,8 +34,8 @@ export const itemClasses: ItemClasses = {
     "Two Hand Mace",
     "FishingRod"
   ],
-  Offhand: ["Shield", "Quiver"],
-  Accessory: ["Amulet", "Ring", "Belt"]
+  // Offhand: ["Shield", "Quiver"],
+  Accessory: ["Amulet", "Ring", "Belt", "Quiver"]
 };
 
 export const getItemCategory = (

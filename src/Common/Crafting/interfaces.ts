@@ -107,7 +107,7 @@ export interface ItemClasses {
   Armor: string[];
   "One Handed Weapon": string[];
   "Two Handed Weapon": string[];
-  Offhand: string[];
+  // Offhand: string[];
   Accessory: string[];
 }
 
