@@ -32,6 +32,7 @@ export const itemClasses: ItemClasses = {
     "Two Hand Sword",
     "Two Hand Axe",
     "Two Hand Mace",
+    "Warstaff",
     "FishingRod"
   ],
   // Offhand: ["Shield", "Quiver"],
