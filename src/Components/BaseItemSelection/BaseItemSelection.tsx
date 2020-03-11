@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { itemClasses } from "../../Common/Crafting/CraftingUtil";
 import { CraftingContext } from "../../contexts/ItemContext";
 import "./BaseItemSelection.css";
 import TableHead from "./tableHead";
@@ -36,6 +35,32 @@ export enum SortByOptions {
   CRIT_ASC,
   CRIT_DESC
 }
+
+const itemClasses = {
+  Armor: ["Gloves", "Boots", "Body Armour", "Helmet"],
+  "One Handed Weapon": [
+    "Claw",
+    "Dagger",
+    "Rune Dagger",
+    "Wand",
+    "One Hand Sword",
+    "Thrusting One Hand Sword",
+    "One Hand Mace",
+    "One Hand Axe",
+    "Sceptre"
+  ],
+  "Two Handed Weapon": [
+    "Bow",
+    "Staff",
+    "Two Hand Sword",
+    "Two Hand Axe",
+    "Two Hand Mace",
+    "Warstaff",
+    "FishingRod"
+  ],
+  Offhand: ["Shield", "Quiver"],
+  Accessory: ["Amulet", "Ring", "Belt"]
+};
 
 function BaseItemSelection() {
   const { entityStateMeta } = useContext(CraftingContext);
