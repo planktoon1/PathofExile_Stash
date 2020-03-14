@@ -7,23 +7,6 @@ import {
 const MODLIST: ModOutputDict = require("../src/assets/poe_data/mods.min.json");
 const BASEITEMLIST: BaseItemDict = require("../src/assets/poe_data/base_items.min.json");
 
-// For each mod
-//  Sort out all mods where domain != "item"
-//  And sort out all mods where generation_type != "prefix" | "suffix"
-//  For each entry in "spawn_weight" if weight > 0:
-//      Add to tierlist first under the "tagname" and then under the "type"
-//      tierlist[tag][type] = [{id: modId, requiredLvl: ilvl}, n...]
-
-// Given a baseitem and a mod find the mod tier
-// For each tag in baseitems tags:
-//      if (tierlist[tag] && tierlist[tag][mod.type]) {
-//          const index = tierlist[tag][mod.type].findIndex( e => e.id === mod.id )
-//          if (index !== -1) {
-//              return index + 1
-//          }
-//      }
-// IF the algo ran through all the tags without finding the mod.. then something is wrong
-
 // get list of tags that matter for the tierlist
 
 let relevantTags = new Set();
@@ -37,7 +20,7 @@ for (let [modName, modData] of Object.entries(MODLIST)) {
     }
   }
 }
-//console.log(relevantTags);
+
 const tierList: any = {};
 /** mapping used for getting all tierGroups that a specific tag is used in */
 const tagToTierGroupLookup = {};
@@ -66,14 +49,24 @@ for (let [modName, modData] of Object.entries(MODLIST)) {
   if (!modIsWithin(modData, ["item"], ["suffix", "prefix"])) {
     continue;
   }
-
+  const AddedToTierGroups: any = {};
   for (const spawnWeight of modData.spawn_weights) {
     if (spawnWeight.weight > 0 && tagToTierGroupLookup[spawnWeight.tag]) {
       // add the mod to all tierlists that it should be added to
+
       for (const tierGroup of tagToTierGroupLookup[spawnWeight.tag]) {
+        // avoid dublicate mods in tierlists
+        if (AddedToTierGroups[tierGroup]) {
+          continue;
+        }
+        AddedToTierGroups[tierGroup] = true;
         if (!tierList[tierGroup][modData.type]) {
           tierList[tierGroup][modData.type] = [
-            { reqLevel: modData.required_level, modName }
+            {
+              reqLevel: modData.required_level,
+              modName,
+              generationType: modData.generation_type
+            }
           ];
         } else {
           tierList[tierGroup][modData.type].push({
@@ -87,8 +80,8 @@ for (let [modName, modData] of Object.entries(MODLIST)) {
   }
 }
 
-console.log(tierList["sword#two_hand_weapon#weapon#default"]);
-console.log(Object.keys(tierList).length);
+console.log(tierList["rapier#sword#one_hand_weapon#weapon#default"]);
+//console.log(Object.keys(tierList));
 
 /*
     Utility functions
