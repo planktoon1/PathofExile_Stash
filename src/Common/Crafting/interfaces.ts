@@ -239,6 +239,20 @@ export interface BaseItemDict {
   [id: string]: BaseItem;
 }
 
+export interface ItemClassDict {
+  [id: string]: ItemClass;
+}
+
+export interface ItemClass {
+  crusader_tag: null | string;
+  elder_tag: null | string;
+  hunter_tag: null | string;
+  name: string;
+  redeemer_tag: null | string;
+  shaper_tag: null | string;
+  warlord_tag: null | string;
+}
+
 export interface IdValueDict {
   [index: string]: number;
 }
