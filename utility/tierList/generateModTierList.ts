@@ -40,43 +40,35 @@ for (let [modId, modData] of Object.entries(MODLIST)) {
   }
 }
 
-interface ModDetails {
+export interface ModDetails {
   reqLevel: number;
   modId: string;
   generationType: string;
 }
+
+export interface ModDetailsDict {
+  [tierType: string]: ModDetails[];
+}
+
+export interface TierGroup {
+  /** What determines what tier group a specific base item belongs to is the tags on that item,
+   * because the tags are ultimately what determines what mods are available to roll */
+  tags: string[];
+  /** How many base items belong to this tier group  */
+  itemCount: number;
+  itemClass: string;
+  naturalTypes: ModDetailsDict;
+  _elder: ModDetailsDict;
+  _shaper: ModDetailsDict;
+  _crusader: ModDetailsDict;
+  _adjudicator: ModDetailsDict;
+  _basilisk: ModDetailsDict;
+  _eyrie: ModDetailsDict;
+}
 /** The actual tier lists are stored here under tier groups */
 export interface TierList {
   /** A tier group is a tier list that applies to a specific set of base items */
-  [tierGroup: string]: {
-    /** What determines what tier group a specific base item belongs to is the tags on that item,
-     * because the tags are ultimately what determines what mods are available to roll */
-    tags: string[];
-    /** How many base items belong to this tier group  */
-    itemCount: number;
-    itemClass: string;
-    naturalTypes: {
-      [tierType: string]: ModDetails[];
-    };
-    _elder: {
-      [tierType: string]: ModDetails[];
-    };
-    _shaper: {
-      [tierType: string]: ModDetails[];
-    };
-    _crusader: {
-      [tierType: string]: ModDetails[];
-    };
-    _adjudicator: {
-      [tierType: string]: ModDetails[];
-    };
-    _basilisk: {
-      [tierType: string]: ModDetails[];
-    };
-    _eyrie: {
-      [tierType: string]: ModDetails[];
-    };
-  };
+  [tierGroup: string]: TierGroup;
 }
 
 const tierList: TierList = {};
@@ -100,11 +92,11 @@ for (let [itemName, itemData] of Object.entries(BASEITEMLIST)) {
     for (const influenceTag of influenceTags) {
       if (influenceTagToTierGroupLookup[influenceTag]) {
         if (
-          influenceTagToTierGroupLookup[influenceTag].indexOf(
-            "tierGroupName"
-          ) !== -1
-        )
+          influenceTagToTierGroupLookup[influenceTag].indexOf(tierGroupName) ===
+          -1
+        ) {
           influenceTagToTierGroupLookup[influenceTag].push(tierGroupName);
+        }
       } else {
         influenceTagToTierGroupLookup[influenceTag] = [tierGroupName];
       }
@@ -198,7 +190,6 @@ for (let [modId, modData] of Object.entries(MODLIST)) {
     }
   }
 }
-
 // Go through all tier lists and sort them on requiredLevel
 for (const [tierGroupName, tierGroup] of Object.entries(tierList)) {
   const listTypes = [
@@ -237,7 +228,11 @@ const getModTier = (
   return tier === -1 ? undefined : tier + 1;
 };
 
-console.log(tierList["dex_int_armour#boots#armour#default"]._elder);
+// console.log(tierList["dex_int_armour#boots#armour#default"]);
+
+export const getTierList = () => {
+  return tierList;
+};
 
 // for (let [tierGroup, tierData] of Object.entries(tierList)) {
 //   console.log(
@@ -246,15 +241,7 @@ console.log(tierList["dex_int_armour#boots#armour#default"]._elder);
 // }
 
 const testBaseItem = {
-  tags: [
-    "not_for_sale",
-    "atlas_base_type",
-    "bootsatlas1",
-    "dex_int_armour",
-    "boots",
-    "armour",
-    "default"
-  ]
+  tags: ["str_int_armour", "body_armour", "armour", "default"]
 };
 
 const testMod = {
@@ -262,7 +249,7 @@ const testMod = {
   key: "LifeRegeneration1"
 };
 
-//console.log(getModTier(testBaseItem, testMod));
+// console.log(tierList["str_int_armour#body_armour#armour#default"]._elder);
 
 /*
     Utility functions
