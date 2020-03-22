@@ -2,16 +2,16 @@ import {
   ModOutputDict,
   BaseItemDict,
   ModOutput,
-  BaseItem,
-  Mod
+  BaseItem
 } from "../../src/Common/Crafting/interfaces";
 import { getInfluenceTags } from "./itemClasses";
+import { TierList, TierListLookUp, ModDetails } from "./models";
 
 const MODLIST: ModOutputDict = require("../../src/assets/poe_data/mods.min.json");
 const BASEITEMLIST: BaseItemDict = require("../../src/assets/poe_data/base_items.min.json");
 
 /** A mapping between mod name and associated spawn_weight tag */
-const influenceMods = {
+export const influenceMods = {
   Eldritch: "_elder",
   "of the Elder": "_elder",
   "The Shaper's": "_shaper",
@@ -26,6 +26,7 @@ const influenceMods = {
   "of Redemption": "_eyrie"
 };
 // Note: all mods with one of the mod names above only has tags that has the corresponding influence suffix in the tag name. Excluding blocking tags/tags that has spawn weight 0
+// Run assumption 1 to check if this is valid
 
 // get list of tags that matter for the tierlist
 let relevantTags = new Set();
@@ -40,43 +41,12 @@ for (let [modId, modData] of Object.entries(MODLIST)) {
   }
 }
 
-export interface ModDetails {
-  reqLevel: number;
-  modId: string;
-  generationType: string;
-}
-
-export interface ModDetailsDict {
-  [tierType: string]: ModDetails[];
-}
-
-export interface TierGroup {
-  /** What determines what tier group a specific base item belongs to is the tags on that item,
-   * because the tags are ultimately what determines what mods are available to roll */
-  tags: string[];
-  /** How many base items belong to this tier group  */
-  itemCount: number;
-  itemClass: string;
-  naturalTypes: ModDetailsDict;
-  _elder: ModDetailsDict;
-  _shaper: ModDetailsDict;
-  _crusader: ModDetailsDict;
-  _adjudicator: ModDetailsDict;
-  _basilisk: ModDetailsDict;
-  _eyrie: ModDetailsDict;
-}
-/** The actual tier lists are stored here under tier groups */
-export interface TierList {
-  /** A tier group is a tier list that applies to a specific set of base items */
-  [tierGroup: string]: TierGroup;
-}
-
 const tierList: TierList = {};
 /** mapping used for getting all tierGroups that a specific tag is used in */
 const tagToTierGroupLookup: { [tag: string]: string[] } = {};
 const influenceTagToTierGroupLookup: { [tag: string]: string[] } = {};
 
-// Generate tier groups based on available base items. note: after this all groups will be generated but no mods has been added
+// Generate tier groups based on available base items. note: after this loop is done all groups will be generated but no mods has been added yet
 for (let [itemName, itemData] of Object.entries(BASEITEMLIST)) {
   if (itemData.domain !== "item") {
     continue;
@@ -207,54 +177,77 @@ for (const [tierGroupName, tierGroup] of Object.entries(tierList)) {
     }
   }
 }
+console.log(
+  `tierList has been generated with '${
+    Object.keys(tierList).length
+  }' tierGroups/"sub"itemclasses`
+);
 
-/** Get the tier group a specific baseitem belongs to */
-const getTierGroup = (baseItem: Pick<BaseItem, "tags">): string => {
-  const tierGroupTags = baseItem.tags.filter(e => relevantTags.has(e));
-  return tierGroupTags.join("#");
-};
+const tierListLookUp: TierListLookUp = {};
+let modCount = 0;
+for (let [tierGroupName, tierGroup] of Object.entries(tierList)) {
+  /** List of all the props in the tiergroup object that contains tierlists */
+  const listTypes = [
+    "naturalTypes",
+    "_elder",
+    "_shaper",
+    "_crusader",
+    "_adjudicator",
+    "_basilisk",
+    "_eyrie"
+  ];
 
-const getModTier = (
-  baseItem: Pick<BaseItem, "tags">,
-  mod: Pick<Mod, "type" | "key">
-): undefined | number => {
-  const tierGroup = getTierGroup(baseItem);
-  const tierListEntry = tierList[tierGroup]?.naturalTypes[mod.type];
-  if (!tierListEntry) {
-    return undefined;
+  for (const list of listTypes) {
+    for (const [modtypeName, mt] of Object.entries(tierGroup[list])) {
+      const modType = mt as ModDetails[];
+      for (let i = 0; i < modType.length; i++) {
+        const tier = i + 1;
+        const string = String(modType[i].modId + tierGroupName);
+        // console.log(string);
+        if (tierListLookUp[tierGroupName]) {
+          tierListLookUp[tierGroupName][modType[i].modId] = tier;
+        } else {
+          tierListLookUp[tierGroupName] = {};
+          tierListLookUp[tierGroupName][modType[i].modId] = tier;
+        }
+        modCount++;
+      }
+    }
   }
+}
+console.log(
+  `tierListLookUp has been generated with '${modCount}' mods across '${
+    Object.keys(tierListLookUp).length
+  }' tierGroups`
+);
 
-  const tier = tierListEntry.findIndex(e => e.modId === mod.key);
-  return tier === -1 ? undefined : tier + 1;
-};
-
-// console.log(tierList["dex_int_armour#boots#armour#default"]);
-
-export const getTierList = () => {
-  return tierList;
-};
-
-// for (let [tierGroup, tierData] of Object.entries(tierList)) {
-//   console.log(
-//     `${tierGroup}.. itemCount: ${tierData.itemCount}.. class: ${tierData.itemClass}`
-//   );
-// }
-
-const testBaseItem = {
-  tags: ["str_int_armour", "body_armour", "armour", "default"]
-};
-
-const testMod = {
-  type: "LifeRegeneration",
-  key: "LifeRegeneration1"
-};
-
-// console.log(tierList["str_int_armour#body_armour#armour#default"]._elder);
+// Lets work backwards and take all tiergroups from a itemClass and combine them together. See assumption 2 in './testAssumptions.ts' for information on why we can do this
+const combinedTierGroups: {
+  [itemClass: string]: {
+    [modId: string]: number;
+  };
+} = {};
+for (let [tierGroupName, tierGroupData] of Object.entries(tierList)) {
+  const itemClass = tierGroupData.itemClass;
+  for (let [modId, tier] of Object.entries(tierListLookUp[tierGroupName])) {
+    if (!combinedTierGroups[itemClass]) {
+      combinedTierGroups[itemClass] = {};
+    }
+    if (!combinedTierGroups[itemClass][modId]) {
+      combinedTierGroups[itemClass][modId] = tier;
+      // If an entry for the modId already exists compare the existing entry with the new entry
+    } else if (combinedTierGroups[itemClass][modId] !== tier) {
+      console.log(
+        `mod: '${modId}' has tier: '${tier}' in tierGroup: '${tierGroupName}' but tier: '${combinedTierGroups[itemClass][modId]}' in another tierGroup, thus assumption 2 is wrong`
+      );
+    }
+  }
+}
 
 /*
     Utility functions
 */
-function modIsWithin(
+export function modIsWithin(
   modData: ModOutput,
   domains: string[] = [],
   generationType: string[] = []
@@ -264,3 +257,19 @@ function modIsWithin(
     generationType.includes(modData.generation_type)
   );
 }
+
+/** Get the tier group a specific baseitem belongs to */
+export const getTierGroup = (baseItem: Pick<BaseItem, "tags">): string => {
+  const tierGroupTags = baseItem.tags.filter(e => relevantTags.has(e));
+  return tierGroupTags.join("#");
+};
+
+export const getDetailedTierList = () => {
+  return tierList;
+};
+
+export const getTierListLookUp = () => {
+  //return tierListLookUp;
+  // Note: because of assumption2 being true we can generate tierlist lookup based on itemClasses instead of tierGroupings
+  return combinedTierGroups;
+};
