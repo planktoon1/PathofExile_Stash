@@ -261,9 +261,6 @@ export interface IdAvrMinMaxDict {
   [index: string]: { avr: number; min: number; max: number };
 }
 
-export interface ItemClassDict {
-  [id: string]: ItemClass;
-}
 export interface ItemClass {
   elder_tag: string | null;
   name: string;
