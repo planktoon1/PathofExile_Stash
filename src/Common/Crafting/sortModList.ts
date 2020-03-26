@@ -1,6 +1,6 @@
 import { ModOutputDict } from "./interfaces";
 const fs = require("fs");
-const MODLIST: ModOutputDict = require("../../assets/poe_data/mods.min.json");
+const MODLIST: ModOutputDict = require("../../assets/poe_data/processed_mod_list.min");
 
 const filterMods = () => {
   const itemModList: ModOutputDict = {};

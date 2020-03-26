@@ -19,7 +19,7 @@ export const updateTagList = (stateMeta: EntityStateMeta) => {
   addItemTypeTags(stateMeta);
   // Add the tags from the implicit modifiers if any
   for (let implicit of stateMeta.state.baseItem.implicits) {
-    for (let tag of MODLIST[`${implicit}`].adds_tags) {
+    for (let tag of MODLIST[implicit].adds_tags) {
       if (!stateMeta.state.tags.includes(tag))
         stateMeta.state.tags.unshift(tag);
     }

@@ -12,6 +12,9 @@ export const MODLIST: ModDict = require("../../assets/poe_data/processed_mod_lis
 export const BASEITEMS: BaseItemDict = require("../../assets/poe_data/base_items.min.json");
 export const MODTRANSLATIONS: TranslationDict = require("../../assets/poe_data/stat_translations.min.json");
 export const ITEMCLASSES: ItemClassDict = require("../../assets/poe_data/item_classes.min.json");
+export const TIERLIST: {
+  [itemClass: string]: { [modId: string]: number };
+} = require("../../assets/poe_data/mod_tier_lookup.min.json");
 
 // Used as options in the base items selection, therefore not including all posibilitis, like jewels.
 export const itemClasses: ItemClasses = {

@@ -6,6 +6,7 @@ import {
 } from "../../Common/Crafting/CraftingUtil";
 import "./ItemPresentation.css";
 import { EntityState } from "../../Common/Crafting/interfaces";
+import { getModTier } from "./utility";
 
 function ItemPresentation({ item }: { item: EntityState }) {
   // ------------- Item Header -------------
@@ -333,7 +334,6 @@ function ItemPresentation({ item }: { item: EntityState }) {
       {statRequirements()}
     </div>
   );
-
   const implicits = () => {
     if (item.implicitTranslations.length > 0) {
       return (
@@ -363,7 +363,9 @@ function ItemPresentation({ item }: { item: EntityState }) {
         {item.modTranslations.map(mod => (
           <p
             className="value augmented"
-            title={mod.modId}
+            title={`t${getModTier(item.baseItem.item_class, mod.modId)} id: ${
+              mod.modId
+            }`}
             key={mod.translation}
           >
             {mod.translation}

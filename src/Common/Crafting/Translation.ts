@@ -11,7 +11,7 @@ import { isEmpty, onlyUnique, isIterable } from "../Utilities";
 import { formats } from "./format";
 import { indexHandlers } from "./indexHandlers";
 
-export const modlist = require("../../assets/poe_data/mods.min.json");
+export const modlist = require("../../assets/poe_data/processed_mod_list.min");
 export const baseItems = require("../../assets/poe_data/base_items.min.json");
 export const modTranslations = require("../../assets/poe_data/stat_translations.min.json");
 
