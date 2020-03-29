@@ -9,16 +9,25 @@ import { resetStatistics } from "../../../reducers/itemReducer/actions/resetStat
 import { setItemType as changeItemType } from "../../../reducers/itemReducer/actions/setItemType";
 import { ItemTypes } from "../../../Common/Crafting/interfaces";
 
-export interface Props { }
+export interface Props {}
 
 function GodPanel() {
-  const { entityStateMeta } = useContext(CraftingContext);
+  const {
+    entityStateMeta,
+    setShowAdvancedDetails,
+    showAdvancedDetails
+  } = useContext(CraftingContext);
+
   const [iLvl, setILvl] = useState(entityStateMeta.state.itemLevel);
   const [itemType, setItemType] = useState<ItemTypes>(
     entityStateMeta.state.itemType
   );
   const { dispatch } = useContext(CraftingContext);
 
+  const toggleShowAdvancedDetails = () => {
+    setShowAdvancedDetails(!showAdvancedDetails);
+    console.log(showAdvancedDetails);
+  };
   const handleIlvlChange = e => {
     const itemLevel = e.target.validity.valid ? Number(e.target.value) : iLvl;
     let validItemLevel = 0;
@@ -62,6 +71,19 @@ function GodPanel() {
           value={iLvl}
           onChange={handleIlvlChange}
         ></input>
+      </div>
+      <div className="godButtonContainer">
+        <button className="inputButton" disabled>
+          Advanced Mod Description:{" "}
+        </button>{" "}
+        <label className="checkboxContainer">
+          <input
+            type="checkbox"
+            checked={showAdvancedDetails}
+            onChange={toggleShowAdvancedDetails}
+          />
+          <span className="checkmark"></span>
+        </label>
       </div>
       <div className="godButtonContainer">
         <button className="inputButton" disabled>
