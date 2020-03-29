@@ -385,6 +385,8 @@ function ItemPresentation({
       </div>
     );
   };
+  const imgUrl = getImgUrlFromBaseItem(item.baseItem, item.itemType);
+  console.log(imgUrl);
 
   // -------------------------------------
   return (
@@ -402,14 +404,26 @@ function ItemPresentation({
         </div>
       </div>
       <div className="bottomWrapper">
-        <img
-          className="image scale"
-          src={getImgUrlFromBaseItem(item.baseItem, item.itemType)}
-          alt={item.name}
-        />
+        <div
+          className="image"
+          style={{
+            backgroundImage: `url(${imgUrl})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+            backgroundPosition: "center"
+          }}
+        ></div>
       </div>
     </>
   );
+}
+{
+  /* <img
+className="image scale"
+src={getImgUrlFromBaseItem(item.baseItem, item.itemType)}
+alt={item.name}
+
+/> */
 }
 
 ItemPresentation.prototype = {
