@@ -1,6 +1,9 @@
 @font-face {
-  font-family: fontin_smallcaps;
-  src: url(../../assets/fonts/Fontin-SmallCaps.ttf);
+  font-family: "fontin";
+  src: url("../../assets/fonts/fontin.woff2") format("woff2"),
+    url("../../assets/fonts/fontin.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 .itemWrapper {
@@ -13,7 +16,7 @@
   flex-direction: column;
   align-items: center;
   color: #7f7f7f;
-  font-family: "fontin_smallcaps", Verdana, Arial, Helvetica, sans-serif;
+  font-family: "fontin", Verdana, Arial, Helvetica, sans-serif;
   background-color: black;
   min-width: 100%;
   max-width: fit-content;
@@ -53,9 +56,13 @@
   justify-content: center;
 }
 
-.bottomWrapper .image {
+.bottomWrapper .image.fixed {
   max-height: 15rem;
-  padding-bottom: 5rem;
+}
+.bottomWrapper .image.scale {
+  max-height: min(100%, 15rem);
+  padding-bottom: 1rem;
+  box-sizing: border-box;
 }
 
 p {
@@ -82,6 +89,12 @@ p {
 }
 .value.corrupted {
   color: #d20000;
+}
+.value.detail {
+  color: rgb(127, 127, 127);
+  font-style: italic;
+  font-size: 0.9rem;
+  padding-top: 0.4rem;
 }
 .itemHeader {
   background-image: url(https://web.poecdn.com/image/item/popup/header-normal-left.png),

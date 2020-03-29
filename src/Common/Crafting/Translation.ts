@@ -4,8 +4,7 @@ import {
   IdValueDict,
   IdAvrMinMaxDict,
   TranslationEntry,
-  TranslationDict,
-  ModOutput
+  TranslationDict
 } from "./interfaces";
 import { isEmpty, onlyUnique, isIterable } from "../Utilities";
 import { formats } from "./format";
@@ -218,7 +217,7 @@ export const getModTranslations = (
  * @returns {string}                        The mod description.
  */
 export const getModDescription = (
-  mod: Mod | ModOutput,
+  mod: Mod,
   excludeText: boolean = false,
   translations: Translation[] = modTranslations
 ): string[] => {

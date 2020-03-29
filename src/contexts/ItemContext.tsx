@@ -19,6 +19,8 @@ interface CraftingContextI {
   deselectCurrency: () => void;
   currencyLocked: boolean;
   setCurrencyLocked: (value: boolean) => void;
+  showAdvancedDetails: boolean;
+  setShowAdvancedDetails: (value: boolean) => void;
 }
 
 export const CraftingContext = createContext<CraftingContextI>({
@@ -31,11 +33,14 @@ export const CraftingContext = createContext<CraftingContextI>({
   selectCurrency: e => {},
   deselectCurrency: () => {},
   currencyLocked: false,
-  setCurrencyLocked: () => {}
+  setCurrencyLocked: () => {},
+  showAdvancedDetails: true,
+  setShowAdvancedDetails: () => {}
 });
 
 const ItemContextProvider: React.FC<Props> = props => {
   const [currencyLocked, setCurrencyLocked] = useState(false);
+  const [showAdvancedDetails, setShowAdvancedDetails] = useState(false);
   const [entityStateMeta, dispatch] = useReducer(
     ItemReducer,
     entityStateMetaInitValue
@@ -76,7 +81,9 @@ const ItemContextProvider: React.FC<Props> = props => {
         selectCurrency,
         deselectCurrency,
         currencyLocked,
-        setCurrencyLocked
+        setCurrencyLocked,
+        showAdvancedDetails,
+        setShowAdvancedDetails
       }}
     >
       {props.children}

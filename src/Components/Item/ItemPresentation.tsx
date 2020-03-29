@@ -8,7 +8,13 @@ import "./ItemPresentation.css";
 import { EntityState } from "../../Common/Crafting/interfaces";
 import { getModTier } from "./utility";
 
-function ItemPresentation({ item }: { item: EntityState }) {
+function ItemPresentation({
+  item,
+  showAdvancedDetails
+}: {
+  item: EntityState;
+  showAdvancedDetails: boolean;
+}) {
   // ------------- Item Header -------------
   const itemHeader = () => {
     const doubleLinedRarities = ["Rare", "Unique"];
@@ -361,15 +367,20 @@ function ItemPresentation({ item }: { item: EntityState }) {
       <div className="affixes">
         <div className={`separator ${item.rarity}`}></div>
         {item.modTranslations.map(mod => (
-          <p
-            className="value augmented"
-            title={`t${getModTier(item.baseItem.item_class, mod.modId)} id: ${
-              mod.modId
-            }`}
-            key={mod.translation}
-          >
-            {mod.translation}
-          </p>
+          <>
+            {mod.displayAdvancedDetails && (
+              <p className="value detail">{mod.advancedDetails}</p>
+            )}
+            <p
+              className="value augmented"
+              title={`t${getModTier(item.baseItem.item_class, mod.modId)} id: ${
+                mod.modId
+              }`}
+              key={mod.translation}
+            >
+              {mod.translation}
+            </p>
+          </>
         ))}
       </div>
     );
@@ -392,7 +403,7 @@ function ItemPresentation({ item }: { item: EntityState }) {
       </div>
       <div className="bottomWrapper">
         <img
-          className="image"
+          className="image scale"
           src={getImgUrlFromBaseItem(item.baseItem, item.itemType)}
           alt={item.name}
         />

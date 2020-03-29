@@ -73,6 +73,9 @@ export interface EntityStateMeta {
 export interface ModTranslation {
   modId: string;
   translation: string;
+  translationWithMinMax: string;
+  advancedDetails: string;
+  displayAdvancedDetails: boolean;
 }
 
 export interface Entity {
