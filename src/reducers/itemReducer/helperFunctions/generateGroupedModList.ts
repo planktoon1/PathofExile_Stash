@@ -149,6 +149,8 @@ export const generateGroupedModList = (
       groupedMods[groupName].description = groupedMods[
         groupName
       ].description.replace(/[0-9]+/g, "#");
+      // Sort mods
+      group.mods.sort((a, b) => a.mod.required_level - b.mod.required_level);
     }
   }
   return groupedMods;
