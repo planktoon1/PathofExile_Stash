@@ -40,7 +40,7 @@ export const CraftingContext = createContext<CraftingContextI>({
 
 const ItemContextProvider: React.FC<Props> = props => {
   const [currencyLocked, setCurrencyLocked] = useState(false);
-  const [showAdvancedDetails, setShowAdvancedDetails] = useState(false);
+  const [showAdvancedDetails, setShowAdvancedDetails] = useState(true);
   const [entityStateMeta, dispatch] = useReducer(
     ItemReducer,
     entityStateMetaInitValue

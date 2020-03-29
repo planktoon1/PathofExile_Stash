@@ -368,7 +368,7 @@ function ItemPresentation({
         <div className={`separator ${item.rarity}`}></div>
         {item.modTranslations.map(mod => (
           <>
-            {mod.displayAdvancedDetails && (
+            {showAdvancedDetails && mod.displayAdvancedDetails && (
               <p className="value detail">{mod.advancedDetails}</p>
             )}
             <p
