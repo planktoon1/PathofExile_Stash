@@ -417,14 +417,6 @@ function ItemPresentation({
     </>
   );
 }
-{
-  /* <img
-className="image scale"
-src={getImgUrlFromBaseItem(item.baseItem, item.itemType)}
-alt={item.name}
-
-/> */
-}
 
 ItemPresentation.prototype = {
   item: PropTypes.object

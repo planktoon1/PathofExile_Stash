@@ -1,8 +1,5 @@
 import { BaseItem, EntityStateMeta } from "../../../Common/Crafting/interfaces";
-import {
-  getItemCategory,
-  getModById
-} from "../../../Common/Crafting/CraftingUtil";
+import { getModById } from "../../../Common/Crafting/CraftingUtil";
 import { getRndInteger } from "../../../Common/Utilities";
 import { updateTagList } from "./updateTagList";
 import { removeAffixes } from "./removeAffixes";

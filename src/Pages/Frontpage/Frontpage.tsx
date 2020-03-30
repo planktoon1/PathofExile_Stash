@@ -25,7 +25,11 @@ function Frontpage() {
   const [craftingOption, setCraftingOption] = useState("currencyCrafting");
   useShiftKeyCurrencyLockToggle();
   usePopUps();
-  useDeselectCurrencyOnPressOutsideItem(currencyLocked, deselectCurrency, selectedCurrency);
+  useDeselectCurrencyOnPressOutsideItem(
+    currencyLocked,
+    deselectCurrency,
+    selectedCurrency
+  );
   useEffect(() => {
     dispatch(changeBaseItem("Maraketh Bow"));
   }, [dispatch]);
@@ -91,39 +95,42 @@ function useShiftKeyCurrencyLockToggle() {
   }, [currencyLocked, setCurrencyLocked]);
 }
 
-function useDeselectCurrencyOnPressOutsideItem(currencyLocked, deselectCurrency, selectedCurrency) {
+function useDeselectCurrencyOnPressOutsideItem(
+  currencyLocked,
+  deselectCurrency,
+  selectedCurrency
+) {
   useEffect(() => {
     const stash = document.getElementById("stash");
     const optionsBar = document.getElementById("optionsBar");
 
     const outsideClickListener = event => {
       if (currencyLocked) {
-        return
+        return;
       }
 
       if (selectedCurrency.selectedCurrency === null) {
-        return
+        return;
       }
       if (stash) {
-        if ((stash.contains(event.target))) { // or use: event.target.closest(selector) === null
-          return
+        if (stash.contains(event.target)) {
+          // or use: event.target.closest(selector) === null
+          return;
         }
       }
       if (optionsBar) {
-        if ((optionsBar.contains(event.target))) { // or use: event.target.closest(selector) === null
-          return
+        if (optionsBar.contains(event.target)) {
+          // or use: event.target.closest(selector) === null
+          return;
         }
       }
       deselectCurrency();
-    }
-
-    document.addEventListener('click', outsideClickListener)
-    // Remove event listeners on cleanup
-    return () => {
-      document.removeEventListener('click', outsideClickListener);
     };
 
-  }, [deselectCurrency, selectedCurrency]);
+    document.addEventListener("click", outsideClickListener);
+    // Remove event listeners on cleanup
+    return () => {
+      document.removeEventListener("click", outsideClickListener);
+    };
+  }, [deselectCurrency, selectedCurrency, currencyLocked]);
 }
-
-
