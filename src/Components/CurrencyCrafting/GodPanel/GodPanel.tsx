@@ -8,6 +8,7 @@ import { resetItem } from "../../../reducers/itemReducer/actions/resetItem";
 import { resetStatistics } from "../../../reducers/itemReducer/actions/resetStatistics";
 import { setItemType as changeItemType } from "../../../reducers/itemReducer/actions/setItemType";
 import { ItemTypes } from "../../../Common/Crafting/interfaces";
+import InfluenceSelector from "./InfluenceSelector";
 
 export interface Props {}
 
@@ -99,11 +100,15 @@ function GodPanel() {
           <option>Elder</option>
         </select>
       </div>
+      <div className="godButtonContainer">
+        <button className="inputButton" disabled>
+          Influence:{" "}
+        </button>{" "}
+        <InfluenceSelector />
+      </div>
       <div className="godButtonContainer"></div>
     </div>
   );
 }
 
 export default GodPanel;
-
-// helpers
