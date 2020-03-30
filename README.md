@@ -1,4 +1,5 @@
 # Path of Exile - Stash
+
 Live site: https://elastic-payne-6c7ed2.netlify.com/frontpage (Might take a while to spin up if no one has visited recently)
 
 This is a passion project of mine. It is build using React js and Typescript.
@@ -16,7 +17,7 @@ mail: _fkoe90@gmail.com_
 
 discord: _Planken#8344_.
 
-### Planned features - in order of priority
+### Planned features
 
 **( that i'm working on currently, or will work on whenever i have the time. )**
 
@@ -63,5 +64,8 @@ discord: _Planken#8344_.
 [Grinding Gear Games](http://www.grindinggear.com/) for [Path of Exile](https://www.pathofexile.com/) . The contents of all data files belong to them.
 
 [brather1ng](https://github.com/brather1ng) for answering all my questions and for providing [RePoE](https://github.com/brather1ng/RePoE)
+
+[nebuchenazarr](https://www.craftofexile.com/) for answering all my questions.
+If you're looking for a place to calculate and simulate thousands of crafts his tool is exactly what you're looking for. [Craft of Exile](https://www.craftofexile.com/)
 
 [OmegaK2](https://github.com/OmegaK2/) for [PyPoE](https://github.com/OmegaK2/PyPoE) . While my app is written in typescript, some methods of it is 1:1 rewrites of the Python code written in this project

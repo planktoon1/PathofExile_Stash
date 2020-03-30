@@ -21,7 +21,7 @@ function About() {
       <br />
       <br />
       <br />
-      <h3> Planned features - in order of priority</h3>
+      <h3> Planned features</h3>
       <b>
         ( that i'm working on currently, or will work on whenever i have the
         time. )
