@@ -139,6 +139,17 @@ function About() {
         </a>
       </p>
       <p>
+        <a href="https://www.craftofexile.com/" style={{ color: "wheat" }}>
+          Nebuchenazarr
+        </a>{" "}
+        for answering all my questions. Looking for a place to calculate and
+        simulate thousands of crafts? His tool is exactly what you're looking
+        for:{" "}
+        <a href="https://www.craftofexile.com/" style={{ color: "wheat" }}>
+          Craft of Exile
+        </a>
+      </p>
+      <p>
         <a href="https://github.com/OmegaK2/" style={{ color: "wheat" }}>
           OmegaK2
         </a>{" "}
