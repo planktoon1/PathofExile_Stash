@@ -3,11 +3,41 @@ import styled from "styled-components";
 
 interface Props {}
 
-const Button = styled.button`
-  background: palevioletred;
-  border-radius: 3px;
-  border: none;
+const DropDown = styled.div`
+  position: relative;
+  display: inline-block;
+  width: 100%;
+`;
+
+const DropDownButton = styled.div`
   color: white;
+  background-color: #1e2124;
+  height: 2.3rem;
+  padding: 0 1.2rem;
+  text-align-last: center;
+  border: 1px solid bisque;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+`;
+
+const DropdownContent = styled.div`
+  display: none;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid bisque;
+  flex-direction: column;
+  position: absolute;
+  background-color: #1e2124;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  ${DropDown}:hover & {
+    display: flex;
+  }
+  & input[type="checkbox"] {
+    float: right;
+  }
 `;
 
 const InfluenceSelector: React.FunctionComponent<Props> = ({}) => {
@@ -15,9 +45,9 @@ const InfluenceSelector: React.FunctionComponent<Props> = ({}) => {
   const onSelect = (option: string) => {};
   const displayText = !!influences[0] ? "" : "None";
   return (
-    <div className="dropdown">
-      <button className="dropDownButton">{displayText} </button>
-      <div className="dropdownContent">
+    <DropDown>
+      <DropDownButton>{displayText} </DropDownButton>
+      <DropdownContent>
         <label>
           Unavailable{" "}
           <input type="checkbox" onChange={() => onSelect("Unavailable")} />
@@ -42,8 +72,8 @@ const InfluenceSelector: React.FunctionComponent<Props> = ({}) => {
         <label>
           Elder <input type="checkbox" onChange={() => onSelect("Elder")} />
         </label>
-      </div>
-    </div>
+      </DropdownContent>
+    </DropDown>
   );
 };
 
