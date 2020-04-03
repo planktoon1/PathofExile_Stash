@@ -74,6 +74,14 @@ function GodPanel() {
         ></input>
       </div>
       <div className="godButtonContainer">
+        <button disabled>
+          <span style={{ float: "right", paddingRight: "0.3rem" }}>
+            Influence:{" "}
+          </span>
+        </button>{" "}
+        <InfluenceSelector />
+      </div>
+      <div className="godButtonContainer">
         <button className="inputButton" disabled>
           Advanced Mod Description:{" "}
         </button>{" "}
@@ -100,12 +108,7 @@ function GodPanel() {
           <option>Elder</option>
         </select>
       </div>
-      <div className="godButtonContainer">
-        <button className="inputButton" disabled>
-          Influence:{" "}
-        </button>{" "}
-        <InfluenceSelector />
-      </div>
+
       <div className="godButtonContainer"></div>
     </div>
   );
