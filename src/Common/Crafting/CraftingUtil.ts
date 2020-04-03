@@ -55,19 +55,17 @@ export const getItemCategory = (
 
 export const getImgUrlFromBaseItem = (
   baseItem: BaseItem,
-  itemType: ItemTypes = ItemTypes.Normal
+  itemTypes: ItemTypes[] = []
 ): string => {
-  let optionalParams = "";
+  console.log("TEEEEEEEEEEEEST");
 
-  if (itemType !== ItemTypes.Normal) {
-    const height = baseItem.inventory_height;
-    const width = baseItem.inventory_width;
-    if (itemType === ItemTypes.Elder) {
-      optionalParams = `?w=${width}&h=${height}&elder=1`;
-    } else if (itemType === ItemTypes.Shaper) {
-      optionalParams = `?w=${width}&h=${height}&shaper=1`;
-    }
-  }
+  console.log(itemTypes);
+
+  const height = baseItem.inventory_height;
+  const width = baseItem.inventory_width;
+  let optionalParams = `?w=${width}&h=${height}&scale=1&${itemTypes
+    .map(e => `${e}=1`)
+    .join("&")}`.toLowerCase();
 
   const inGameImgUrl = baseItem.visual_identity.dds_file;
 

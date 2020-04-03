@@ -7,7 +7,7 @@ export const stateInitialValue: EntityState = {
   baseItem: getBaseItemFromName("Maraketh Bow"),
   itemLevel: 71,
   corrupted: false,
-  itemType: ItemTypes.Normal,
+  itemTypes: [],
   calculatedProperties: cloneDeep(intialCalculatedProps),
   name: "None",
   rarity: "Normal",

@@ -6,8 +6,8 @@ import { updateTagList } from "./updateTagList";
 
 export const changeItemType = (
   stateMeta: EntityStateMeta,
-  itemType: ItemTypes
+  itemType: ItemTypes[]
 ) => {
-  stateMeta.state.itemType = itemType;
+  stateMeta.state.itemTypes = itemType;
   updateTagList(stateMeta);
 };

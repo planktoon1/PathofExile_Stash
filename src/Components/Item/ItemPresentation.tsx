@@ -20,7 +20,7 @@ function ItemPresentation({
     const doubleLinedRarities = ["Rare", "Unique"];
     if (doubleLinedRarities.includes(item.rarity)) {
       return (
-        <div className={`itemHeader ${item.rarity} ${item.itemType}`}>
+        <div className={`itemHeader ${item.rarity}`}>
           <div className="itemName">{item.name}</div>
           <div className="itemName typeLine">{item.baseItem.name}</div>
         </div>
@@ -32,7 +32,7 @@ function ItemPresentation({
       }
 
       return (
-        <div className={`itemHeader ${item.rarity} ${item.itemType}`}>
+        <div className={`itemHeader ${item.rarity}`}>
           <div
             className="itemName typeLine"
             style={{ fontSize: name.length > 32 ? 15 : 19 }}
@@ -385,7 +385,7 @@ function ItemPresentation({
       </div>
     );
   };
-  const imgUrl = getImgUrlFromBaseItem(item.baseItem, item.itemType);
+  const imgUrl = getImgUrlFromBaseItem(item.baseItem, item.itemTypes);
   console.log(imgUrl);
 
   // -------------------------------------

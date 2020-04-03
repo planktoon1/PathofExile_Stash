@@ -20,9 +20,7 @@ function GodPanel() {
   } = useContext(CraftingContext);
 
   const [iLvl, setILvl] = useState(entityStateMeta.state.itemLevel);
-  const [itemType, setItemType] = useState<ItemTypes>(
-    entityStateMeta.state.itemType
-  );
+  const [itemType, setItemType] = useState<ItemTypes>(ItemTypes.Shaper);
   const { dispatch } = useContext(CraftingContext);
 
   const toggleShowAdvancedDetails = () => {
@@ -44,6 +42,9 @@ function GodPanel() {
   };
   const onSelectItemType = e => {
     setItemType(e.target.value);
+    dispatch(changeItemType([e.target.value]));
+  };
+  const onSelectItemInfluence = e => {
     dispatch(changeItemType(e.target.value));
   };
 

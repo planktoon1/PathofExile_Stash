@@ -39,7 +39,7 @@ export interface EntityStateCalculatedProperties {
 
 export interface EntityState {
   baseItem: BaseItem;
-  itemType: ItemTypes;
+  itemTypes: ItemTypes[];
   itemLevel: number;
   corrupted: boolean;
   calculatedProperties: EntityStateCalculatedProperties;
@@ -55,7 +55,11 @@ export interface EntityState {
 export enum ItemTypes {
   Normal = "Normal",
   Shaper = "Shaper",
-  Elder = "Elder"
+  Elder = "Elder",
+  Crusader = "Crusader",
+  Warlord = "Warlord",
+  Redeemer = "Redeemer",
+  Hunter = "Hunter"
 }
 
 export interface Statistics {

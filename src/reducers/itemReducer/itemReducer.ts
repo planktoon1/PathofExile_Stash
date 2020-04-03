@@ -91,7 +91,7 @@ export const ItemReducer = (
       calculateProperties(stateMeta);
       return cloneDeep(stateMeta);
     case "SET_ITEM_TYPE":
-      changeItemType(stateMeta, action.itemType);
+      changeItemType(stateMeta, action.itemTypes);
 
       return cloneDeep(stateMeta);
     default:

@@ -42,27 +42,30 @@ const addItemTypeTags = (stateMeta: EntityStateMeta) => {
   if (!stateMeta.state.baseItem) {
     return;
   }
-
-  switch (stateMeta.state.itemType) {
-    case ItemTypes.Elder:
-      const elderTag = getElderTag(stateMeta.state.baseItem.item_class);
-      if (elderTag) {
-        stateMeta.state.tags.unshift(elderTag);
-      }
-      break;
-    case ItemTypes.Shaper:
-      const shaperTag = getShaperTag(stateMeta.state.baseItem.item_class);
-      if (shaperTag) {
-        stateMeta.state.tags.unshift(shaperTag);
-      }
-      break;
-    default:
-      break;
+  // add tags that comes with the influence types
+  for (const type of stateMeta.state.itemTypes) {
+    const tag = getInfluenceTag(stateMeta.state.baseItem.item_class, type);
+    if (tag) {
+      stateMeta.state.tags.unshift(tag);
+    }
   }
 };
 
 export const getElderTag = (itemClass: string) => {
   return ITEMCLASSES[itemClass].elder_tag;
+};
+
+export const getInfluenceTag = (itemClass: string, influence: ItemTypes) => {
+  const influenceMapping = {
+    Normal: "",
+    Shaper: "shaper_tag",
+    Elder: "elder_tag",
+    Crusader: "crusader_tag",
+    Warlord: "warlord_tag",
+    Redeemer: "redeemer_tag",
+    Hunter: "hunter_tag"
+  };
+  return ITEMCLASSES[itemClass][influenceMapping[influence]];
 };
 
 export const getShaperTag = (itemClass: string) => {
