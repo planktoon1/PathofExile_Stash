@@ -32,7 +32,7 @@ export const generateGroupedModList = (
     domain = "item",
     level = 1,
     excludeGroups = getAffixGroups(stateMeta),
-    tags = stateMeta.state.tags
+    tags = stateMeta.state.tags,
   }: GenerateGroupedModListParameters
 ): GroupedMods => {
   // if theres only one generation type specified, convert it to an array
@@ -48,8 +48,8 @@ export const generateGroupedModList = (
         spawnChance: 0,
         available: true,
         availabilityReasons: [],
-        modType: getModtype(mod)
-      }
+        modType: getModtype(mod),
+      },
     };
 
     // exclude modTypes
@@ -125,9 +125,17 @@ export const generateGroupedModList = (
       groupedMods[mod.type].mods.push(modWMetaData);
       groupedMods[mod.type].tiers++;
       groupedMods[mod.type].spawnChance += modWMetaData.metaData.spawnChance;
+
       groupedMods[mod.type].tiersAvailable += modWMetaData.metaData.available
         ? 1
         : 0;
+      if (
+        !groupedMods[mod.type].modTypes.find(
+          (e) => e === modWMetaData.metaData.modType
+        )
+      ) {
+        groupedMods[mod.type].modTypes.push(getModtype(mod));
+      }
     } else {
       groupedMods[mod.type] = {
         generationType: capitalize(modWMetaData.mod.generation_type),
@@ -135,8 +143,8 @@ export const generateGroupedModList = (
         tiers: 1,
         tiersAvailable: modWMetaData.metaData.available ? 1 : 0,
         spawnChance: modWMetaData.metaData.spawnChance,
-        modType: getModtype(mod),
-        description: mod.description
+        modTypes: [modWMetaData.metaData.modType],
+        description: mod.description,
       };
     }
   }
@@ -164,7 +172,7 @@ export interface GroupedMods {
     tiersAvailable: number;
     spawnChance: number;
     description: string;
-    modType: ModTypes;
+    modTypes: ModTypes[];
   };
 }
 
@@ -180,25 +188,35 @@ export interface ModWithMetaData {
 
 export enum ModTypes {
   BASE_ITEM = "Base Item",
-  ELDER = "Elder",
-  SHAPER = "Shaper",
-  DELVE = "Delve",
-  MASTER = "Master",
-  ESSENCE = "Essence"
+  Elder = "Elder",
+  Shaper = "Shaper",
+  Crusader = "Crusader",
+  Adjudicator = "Warlord",
+  Basilisk = "Hunter",
+  Eyrie = "Redeemer",
 }
 
 const getModtype = (mod: Mod): ModTypes => {
-  // if elder
-  if (elderNames.includes(mod.name)) {
-    return ModTypes.ELDER;
-  }
-  // if shaper
-  if (shaperNames.includes(mod.name)) {
-    return ModTypes.SHAPER;
+  // if influence mods
+  const influence = influenceMods[mod.name];
+  if (influence) {
+    return ModTypes[influence];
   }
 
   return ModTypes.BASE_ITEM;
 };
 
-const shaperNames = ["The Shaper's", "of Shaping"];
-const elderNames = ["Eldritch", "of the Elder"];
+const influenceMods = {
+  Eldritch: "Elder",
+  "of the Elder": "Elder",
+  "The Shaper's": "Shaper",
+  "of Shaping": "Shaper",
+  "Crusader's": "Crusader",
+  "of the Crusade": "Crusader",
+  "Warlord's": "Adjudicator",
+  "of the Conquest": "Adjudicator",
+  "Hunter's": "Basilisk",
+  "of the Hunt": "Basilisk",
+  "Redeemer's": "Eyrie",
+  "of Redemption": "Eyrie",
+};

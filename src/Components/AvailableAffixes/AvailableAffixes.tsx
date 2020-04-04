@@ -2,21 +2,22 @@ import { cloneDeep } from "lodash";
 import React, { useEffect, useState } from "react";
 import {
   generate_spawnable_mod_list,
-  MODLIST
+  MODLIST,
 } from "../../Common/Crafting/CraftingUtil";
-import { EntityStateMeta, Mod } from "../../Common/Crafting/interfaces";
+import {
+  EntityStateMeta,
+  Mod,
+  ItemTypes,
+} from "../../Common/Crafting/interfaces";
 import { getModDescription } from "../../Common/Crafting/Translation";
 import {
   generateGroupedModList,
   GroupedMods,
-  ModTypes
+  ModTypes,
 } from "../../reducers/itemReducer/helperFunctions/generateGroupedModList";
 import { getAffixGroups } from "../../reducers/itemReducer/helperFunctions/getAffixGroups";
 import { getRequiredLevel } from "../../reducers/itemReducer/helperFunctions/getRequiredLevel";
-import {
-  getElderTag,
-  getShaperTag
-} from "../../reducers/itemReducer/helperFunctions/updateTagList";
+import { getInfluenceTag } from "../../reducers/itemReducer/helperFunctions/updateTagList";
 import AffixList from "./AffixList";
 import "./AvailableAffixes.css";
 import SearchBar from "./searchBar";
@@ -28,7 +29,7 @@ interface Props {
 }
 
 const AvailableAffixes1: React.FunctionComponent<Props> = ({
-  entityStateMeta
+  entityStateMeta,
 }) => {
   const [affixes, setAffixes] = useState<Mod[]>([]);
   const [groupedAffixes, setGroupedAffixes] = useState<GroupedMods>({});
@@ -41,9 +42,13 @@ const AvailableAffixes1: React.FunctionComponent<Props> = ({
     BaseItem: true,
     Shaper: true,
     Elder: true,
+    Crusader: true,
+    Adjudicator: true,
+    Basilisk: true,
+    Eyrie: true,
     Delve: false,
     Essence: false,
-    Master: false
+    Master: false,
   });
 
   useEffect(() => {
@@ -51,14 +56,48 @@ const AvailableAffixes1: React.FunctionComponent<Props> = ({
     let baseItemTags: string[] = [];
     if (entityStateMeta.state.baseItem) {
       baseItemTags = cloneDeep(entityStateMeta.state.baseItem.tags);
-      const elderTag = getElderTag(entityStateMeta.state.baseItem.item_class);
-      const shaperTag = getShaperTag(entityStateMeta.state.baseItem.item_class);
+      const elderTag = getInfluenceTag(
+        entityStateMeta.state.baseItem.item_class,
+        ItemTypes.Elder
+      );
+      const shaperTag = getInfluenceTag(
+        entityStateMeta.state.baseItem.item_class,
+        ItemTypes.Shaper
+      );
+      const crusaderTag = getInfluenceTag(
+        entityStateMeta.state.baseItem.item_class,
+        ItemTypes.Crusader
+      );
+      const hunterTag = getInfluenceTag(
+        entityStateMeta.state.baseItem.item_class,
+        ItemTypes.Hunter
+      );
+      const warlordTag = getInfluenceTag(
+        entityStateMeta.state.baseItem.item_class,
+        ItemTypes.Warlord
+      );
+      const redeemerTag = getInfluenceTag(
+        entityStateMeta.state.baseItem.item_class,
+        ItemTypes.Redeemer
+      );
       // add all include tags to be able to show unavailable affixes
       if (elderTag) {
         baseItemTags.unshift(elderTag);
       }
       if (shaperTag) {
         baseItemTags.unshift(shaperTag);
+      }
+      if (crusaderTag) {
+        baseItemTags.unshift(crusaderTag);
+      }
+      if (hunterTag) {
+        baseItemTags.unshift(hunterTag);
+      }
+      if (warlordTag) {
+        baseItemTags.unshift(warlordTag);
+      }
+      if (redeemerTag) {
+        baseItemTags.unshift(redeemerTag);
       }
     }
 
@@ -70,6 +109,7 @@ const AvailableAffixes1: React.FunctionComponent<Props> = ({
       baseItemTags,
       getAffixGroups(entityStateMeta)
     );
+
     setAffixes(affixList);
     // TODO: figure out how to optimize
   }, [entityStateMeta]);
@@ -91,10 +131,22 @@ const AvailableAffixes1: React.FunctionComponent<Props> = ({
       modTypesToInclude.push(ModTypes.BASE_ITEM);
     }
     if (filters.Elder) {
-      modTypesToInclude.push(ModTypes.ELDER);
+      modTypesToInclude.push(ModTypes.Elder);
     }
     if (filters.Shaper) {
-      modTypesToInclude.push(ModTypes.SHAPER);
+      modTypesToInclude.push(ModTypes.Shaper);
+    }
+    if (filters.Crusader) {
+      modTypesToInclude.push(ModTypes.Crusader);
+    }
+    if (filters.Adjudicator) {
+      modTypesToInclude.push(ModTypes.Adjudicator);
+    }
+    if (filters.Basilisk) {
+      modTypesToInclude.push(ModTypes.Basilisk);
+    }
+    if (filters.Eyrie) {
+      modTypesToInclude.push(ModTypes.Eyrie);
     }
     const groupedAffixes: GroupedMods = generateGroupedModList(
       entityStateMeta,
@@ -104,7 +156,7 @@ const AvailableAffixes1: React.FunctionComponent<Props> = ({
         level: getRequiredLevel(entityStateMeta),
         tags,
         includeModTypes: modTypesToInclude,
-        includeUnavailableGroups: filters.Unavailable
+        includeUnavailableGroups: filters.Unavailable,
       }
     );
 
@@ -125,7 +177,7 @@ const AvailableAffixes1: React.FunctionComponent<Props> = ({
       const group = groupedAffixes[groupName];
 
       const modGroupDescription = getModDescription(group.mods[0].mod)
-        .filter(e => !!e)
+        .filter((e) => !!e)
         .join(" / ");
 
       // filter based on search string
@@ -198,6 +250,39 @@ const AvailableAffixes1: React.FunctionComponent<Props> = ({
                 defaultChecked={filters.Elder}
               />
             </label>
+            <label>
+              Crusader{" "}
+              <input
+                type="checkbox"
+                onChange={() => onFilterChange("Crusader")}
+                defaultChecked={filters.Shaper}
+              />
+            </label>
+            <label>
+              Warlord{" "}
+              <input
+                type="checkbox"
+                onChange={() => onFilterChange("Adjudicator")}
+                defaultChecked={filters.Elder}
+              />
+            </label>
+            <label>
+              Hunter{" "}
+              <input
+                type="checkbox"
+                onChange={() => onFilterChange("Basilisk")}
+                defaultChecked={filters.Shaper}
+              />
+            </label>
+            <label>
+              Redeemer{" "}
+              <input
+                type="checkbox"
+                onChange={() => onFilterChange("Eyrie")}
+                defaultChecked={filters.Elder}
+              />
+              <div className={`separator`} />
+            </label>
             <label className="disabled" title={notImplementedString}>
               Delve{" "}
               <input
@@ -241,11 +326,15 @@ interface Filters {
   BaseItem: boolean;
   Shaper: boolean;
   Elder: boolean;
+  Crusader: boolean;
+  Adjudicator: boolean;
+  Basilisk: boolean;
+  Eyrie: boolean;
   Delve: boolean;
   Essence: boolean;
   Master: boolean;
 }
 const AvailableAffixes = debounceRender(AvailableAffixes1, 300, {
-  leading: true
+  leading: true,
 });
 export default AvailableAffixes;

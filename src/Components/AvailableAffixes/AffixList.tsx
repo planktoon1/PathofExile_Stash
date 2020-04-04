@@ -27,7 +27,7 @@ const AffixList: React.FunctionComponent<Props> = ({ groupedAffixes }) => {
                 </tr>
                 <tr>
                   <td className="alignLeft">
-                    {group.modType} - {group.generationType}
+                    {group.modTypes.join(" or ")} - {group.generationType}
                   </td>
                   <td title={`Spawn chance: ${spawnChance.toFixed(6)}%`}>
                     Chance: {`${spawnChance.toFixed(1)}%`}{" "}
@@ -40,7 +40,7 @@ const AffixList: React.FunctionComponent<Props> = ({ groupedAffixes }) => {
             </table>
           </button>
           <div className="collapsibleContent">
-            {group.mods.map(mod => (
+            {group.mods.map((mod) => (
               <Affix affixData={mod} key={mod.mod.key} />
             ))}
           </div>

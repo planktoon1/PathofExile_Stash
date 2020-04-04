@@ -24,7 +24,6 @@ function GodPanel() {
 
   const toggleShowAdvancedDetails = () => {
     setShowAdvancedDetails(!showAdvancedDetails);
-    console.log(showAdvancedDetails);
   };
   const handleIlvlChange = (e) => {
     const itemLevel = e.target.validity.valid ? Number(e.target.value) : iLvl;
