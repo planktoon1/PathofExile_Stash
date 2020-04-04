@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { wait } from "../../../Common/Utilities";
+import { ItemTypes } from "../../../Common/Crafting/interfaces";
 // ######## Props ########
-interface Props {}
+interface Props {
+  onSelectItemInfluence: (types: ItemTypes[]) => void;
+  itemTypes: ItemTypes[];
+}
 // ######## Styling ########
 const DropDown = styled.div`
   position: relative;
@@ -51,20 +56,22 @@ const DropdownContent = styled.div`
   }
 `;
 // ######## Component ########
-const InfluenceSelector: React.FunctionComponent<Props> = ({}) => {
-  const [influences, setInfluences] = useState<string[]>([]);
-  const maxInfluenceSelected = influences.length < 2 ? false : true;
-  const onSelect = (option: string) => {
-    const i = influences.findIndex(e => e === option);
+const InfluenceSelector: React.FunctionComponent<Props> = ({
+  onSelectItemInfluence,
+  itemTypes,
+}) => {
+  const maxInfluenceSelected = itemTypes.length < 2 ? false : true;
+  const onSelect = (option: ItemTypes) => {
+    const i = itemTypes.findIndex((e) => e === option);
     if (i !== -1) {
-      const tempInfluences = influences.slice(0);
+      const tempInfluences = itemTypes.slice(0);
       tempInfluences.splice(i, 1);
-      setInfluences(tempInfluences);
+      onSelectItemInfluence(tempInfluences);
     } else if (!maxInfluenceSelected) {
-      setInfluences(influences.concat(option));
+      onSelectItemInfluence(itemTypes.concat(option));
     }
   };
-  const displayText = !!influences[0] ? influences.join(" & ") : "None";
+  const displayText = !!itemTypes[0] ? itemTypes.join(" & ") : "None";
 
   return (
     <DropDown>
@@ -72,37 +79,37 @@ const InfluenceSelector: React.FunctionComponent<Props> = ({}) => {
       <DropdownContent>
         <InfluenceOption
           id="Crusader"
-          influences={influences}
+          influences={itemTypes}
           maxInfluenceSelected={maxInfluenceSelected}
           onSelect={onSelect}
         />
         <InfluenceOption
           id="Warlord"
-          influences={influences}
+          influences={itemTypes}
           maxInfluenceSelected={maxInfluenceSelected}
           onSelect={onSelect}
         />
         <InfluenceOption
           id="Redeemer"
-          influences={influences}
+          influences={itemTypes}
           maxInfluenceSelected={maxInfluenceSelected}
           onSelect={onSelect}
         />
         <InfluenceOption
           id="Hunter"
-          influences={influences}
+          influences={itemTypes}
           maxInfluenceSelected={maxInfluenceSelected}
           onSelect={onSelect}
         />
         <InfluenceOption
           id="Shaper"
-          influences={influences}
+          influences={itemTypes}
           maxInfluenceSelected={maxInfluenceSelected}
           onSelect={onSelect}
         />
         <InfluenceOption
           id="Elder"
-          influences={influences}
+          influences={itemTypes}
           maxInfluenceSelected={maxInfluenceSelected}
           onSelect={onSelect}
         />
@@ -113,7 +120,7 @@ const InfluenceSelector: React.FunctionComponent<Props> = ({}) => {
 
 interface InfluenceOptionProp {
   id: string;
-  onSelect: (option: string) => void;
+  onSelect: (option: ItemTypes) => void;
   maxInfluenceSelected: boolean;
   influences: string[];
 }
@@ -121,15 +128,16 @@ const InfluenceOption: React.FunctionComponent<InfluenceOptionProp> = ({
   id,
   onSelect,
   maxInfluenceSelected,
-  influences
+  influences,
 }) => {
   return (
     <label>
       {id + " "}
       <input
-        disabled={maxInfluenceSelected && !influences.find(e => e === id)}
+        disabled={maxInfluenceSelected && !influences.find((e) => e === id)}
         type="checkbox"
-        onChange={() => onSelect(id)}
+        checked={!!influences.find((e) => e === id)}
+        onChange={() => onSelect(ItemTypes[id])}
       />
     </label>
   );

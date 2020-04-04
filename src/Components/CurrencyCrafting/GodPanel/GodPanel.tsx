@@ -6,7 +6,7 @@ import { setItemLevel } from "../../../reducers/itemReducer/actions/setItemLevel
 import "./GodPanel.css";
 import { resetItem } from "../../../reducers/itemReducer/actions/resetItem";
 import { resetStatistics } from "../../../reducers/itemReducer/actions/resetStatistics";
-import { setItemType as changeItemType } from "../../../reducers/itemReducer/actions/setItemType";
+import { setItemTypes as changeItemTypes } from "../../../reducers/itemReducer/actions/setItemType";
 import { ItemTypes } from "../../../Common/Crafting/interfaces";
 import InfluenceSelector from "./InfluenceSelector";
 
@@ -16,18 +16,17 @@ function GodPanel() {
   const {
     entityStateMeta,
     setShowAdvancedDetails,
-    showAdvancedDetails
+    showAdvancedDetails,
   } = useContext(CraftingContext);
 
   const [iLvl, setILvl] = useState(entityStateMeta.state.itemLevel);
-  const [itemType, setItemType] = useState<ItemTypes>(ItemTypes.Shaper);
   const { dispatch } = useContext(CraftingContext);
 
   const toggleShowAdvancedDetails = () => {
     setShowAdvancedDetails(!showAdvancedDetails);
     console.log(showAdvancedDetails);
   };
-  const handleIlvlChange = e => {
+  const handleIlvlChange = (e) => {
     const itemLevel = e.target.validity.valid ? Number(e.target.value) : iLvl;
     let validItemLevel = 0;
     if (itemLevel < 0) {
@@ -40,12 +39,9 @@ function GodPanel() {
     setILvl(validItemLevel);
     dispatch(setItemLevel(validItemLevel));
   };
-  const onSelectItemType = e => {
-    setItemType(e.target.value);
-    dispatch(changeItemType([e.target.value]));
-  };
-  const onSelectItemInfluence = e => {
-    dispatch(changeItemType(e.target.value));
+
+  const onSelectItemInfluence = (types: ItemTypes[]) => {
+    dispatch(changeItemTypes(types));
   };
 
   return (
@@ -80,7 +76,10 @@ function GodPanel() {
             Influence:{" "}
           </span>
         </button>{" "}
-        <InfluenceSelector />
+        <InfluenceSelector
+          onSelectItemInfluence={onSelectItemInfluence}
+          itemTypes={entityStateMeta.state.itemTypes}
+        />
       </div>
       <div className="godButtonContainer">
         <button className="inputButton" disabled>
@@ -95,21 +94,6 @@ function GodPanel() {
           <span className="checkmark"></span>
         </label>
       </div>
-      <div className="godButtonContainer">
-        <button className="inputButton" disabled>
-          Item Type:{" "}
-        </button>{" "}
-        <select
-          className="itemType"
-          onChange={onSelectItemType}
-          value={itemType}
-        >
-          <option>Normal</option>
-          <option>Shaper</option>
-          <option>Elder</option>
-        </select>
-      </div>
-
       <div className="godButtonContainer"></div>
     </div>
   );

@@ -28,14 +28,14 @@ import { _setItemLevel } from "./helperFunctions/setItemLevel";
 import { orbOfAlteration } from "./currency/orbOfAlteration";
 import { addMod } from "./actions/addMod";
 import { addModWithRandomStats } from "./helperFunctions/addMod";
-import { setItemType } from "./actions/setItemType";
-import { changeItemType } from "./helperFunctions/changeItemType";
+import { setItemTypes } from "./actions/setItemType";
+import { changeItemTypes } from "./helperFunctions/changeItemType";
 import { updateTotalSpawnWeight } from "./helperFunctions/updateTotalSpawnWeight";
 import { stateInitialValue } from "../../Common/Crafting/stateInitialValue";
 
 enum PopUpVariant {
   ERROR = "error",
-  INFO = "info"
+  INFO = "info",
 }
 
 export type ItemReducerAction = ReturnType<
@@ -47,7 +47,7 @@ export type ItemReducerAction = ReturnType<
   | typeof resetItem
   | typeof resetStatistics
   | typeof addMod
-  | typeof setItemType
+  | typeof setItemTypes
 >;
 
 export const entityStateMetaInitValue: EntityStateMeta = {
@@ -55,7 +55,7 @@ export const entityStateMetaInitValue: EntityStateMeta = {
   implicitsWithValues: [],
   state: stateInitialValue,
   popUps: [],
-  statistics: {}
+  statistics: {},
 };
 
 export const ItemReducer = (
@@ -69,7 +69,7 @@ export const ItemReducer = (
     case "CLEAR_POPUPS":
       return {
         ...stateMeta,
-        popUps: []
+        popUps: [],
       };
     case "CHANGE_BASEITEM":
       changeBaseItemByName(stateMeta, action.itemId);
@@ -90,8 +90,8 @@ export const ItemReducer = (
       addModWithRandomStats(stateMeta, action.mod);
       calculateProperties(stateMeta);
       return cloneDeep(stateMeta);
-    case "SET_ITEM_TYPE":
-      changeItemType(stateMeta, action.itemTypes);
+    case "SET_ITEM_TYPES":
+      changeItemTypes(stateMeta, action.itemTypes);
 
       return cloneDeep(stateMeta);
     default:
@@ -104,7 +104,7 @@ const _applyCurrreny = (stateMeta: EntityStateMeta, currencyId: string) => {
   if (stateMeta.state.corrupted && currencyId !== null) {
     stateMeta.popUps.push({
       variant: PopUpVariant.ERROR,
-      message: "Corrupted items cannot be altered further with crafting orbs"
+      message: "Corrupted items cannot be altered further with crafting orbs",
     });
     return;
   }
@@ -156,7 +156,7 @@ const _applyCurrreny = (stateMeta: EntityStateMeta, currencyId: string) => {
     default:
       stateMeta.popUps.push({
         variant: PopUpVariant.ERROR,
-        message: `${currencyId} not implemented`
+        message: `${currencyId} not implemented`,
       });
       console.log(`${currencyId} not implemented`);
       break;
@@ -168,8 +168,8 @@ const _applyCurrreny = (stateMeta: EntityStateMeta, currencyId: string) => {
       [currencyId]: {
         count: stateMeta.statistics[currencyId]
           ? stateMeta.statistics[currencyId].count + 1
-          : 1
-      }
+          : 1,
+      },
     };
     updateTotalSpawnWeight(stateMeta);
   }

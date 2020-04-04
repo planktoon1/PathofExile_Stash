@@ -6,7 +6,7 @@ import {
   TranslationDict,
   ItemClassDict,
   ItemTypes,
-  ModDict
+  ModDict,
 } from "./interfaces";
 export const MODLIST: ModDict = require("../../assets/poe_data/processed_mod_list.min.json");
 export const BASEITEMS: BaseItemDict = require("../../assets/poe_data/base_items.min.json");
@@ -28,7 +28,7 @@ export const itemClasses: ItemClasses = {
     "Thrusting One Hand Sword",
     "One Hand Mace",
     "One Hand Axe",
-    "Sceptre"
+    "Sceptre",
   ],
   "Two Handed Weapon": [
     "Bow",
@@ -37,10 +37,10 @@ export const itemClasses: ItemClasses = {
     "Two Hand Axe",
     "Two Hand Mace",
     "Warstaff",
-    "FishingRod"
+    "FishingRod",
   ],
   // Offhand: ["Shield", "Quiver"],
-  Accessory: ["Amulet", "Ring", "Belt", "Quiver"]
+  Accessory: ["Amulet", "Ring", "Belt", "Quiver"],
 };
 
 export const getItemCategory = (
@@ -57,14 +57,10 @@ export const getImgUrlFromBaseItem = (
   baseItem: BaseItem,
   itemTypes: ItemTypes[] = []
 ): string => {
-  console.log("TEEEEEEEEEEEEST");
-
-  console.log(itemTypes);
-
   const height = baseItem.inventory_height;
   const width = baseItem.inventory_width;
   let optionalParams = `?w=${width}&h=${height}&scale=1&${itemTypes
-    .map(e => `${e}=1`)
+    .map((e) => `${e}=1`)
     .join("&")}`.toLowerCase();
 
   const inGameImgUrl = baseItem.visual_identity.dds_file;

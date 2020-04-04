@@ -35,5 +35,9 @@ export function scrollToElement(element: Element) {
   element.scrollIntoView(true);
 }
 
+export function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export const notImplementedString: string =
   "This feature is not implemented yet";

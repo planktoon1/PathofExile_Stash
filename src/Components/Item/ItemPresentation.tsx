@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import {
   getImgUrlFromBaseItem,
-  itemClasses
+  itemClasses,
 } from "../../Common/Crafting/CraftingUtil";
 import "./ItemPresentation.css";
 import { EntityState } from "../../Common/Crafting/interfaces";
@@ -10,7 +10,7 @@ import { getModTier } from "./utility";
 
 function ItemPresentation({
   item,
-  showAdvancedDetails
+  showAdvancedDetails,
 }: {
   item: EntityState;
   showAdvancedDetails: boolean;
@@ -215,7 +215,7 @@ function ItemPresentation({
             <p>
               {" "}
               Elemental Damage:{" "}
-              {eleDmg.map(t => t).reduce((prev, curr) => [prev, ", ", curr])}
+              {eleDmg.map((t) => t).reduce((prev, curr) => [prev, ", ", curr])}
             </p>
           )}
           {(!!item.calculatedProperties.chaos_damage_min ||
@@ -345,7 +345,7 @@ function ItemPresentation({
       return (
         <div className="implicit">
           <div className={`separator ${item.rarity}`}></div>
-          {item.implicitTranslations.map(implicit => (
+          {item.implicitTranslations.map((implicit) => (
             <p
               key={implicit.translation}
               title={implicit.modId}
@@ -366,7 +366,7 @@ function ItemPresentation({
     return (
       <div className="affixes">
         <div className={`separator ${item.rarity}`}></div>
-        {item.modTranslations.map(mod => (
+        {item.modTranslations.map((mod) => (
           <>
             {showAdvancedDetails && mod.displayAdvancedDetails && (
               <p className="value detail">{mod.advancedDetails}</p>
@@ -386,7 +386,6 @@ function ItemPresentation({
     );
   };
   const imgUrl = getImgUrlFromBaseItem(item.baseItem, item.itemTypes);
-  console.log(imgUrl);
 
   // -------------------------------------
   return (
@@ -410,7 +409,7 @@ function ItemPresentation({
             backgroundImage: `url(${imgUrl})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "contain",
-            backgroundPosition: "center"
+            backgroundPosition: "center",
           }}
         ></div>
       </div>
@@ -419,6 +418,6 @@ function ItemPresentation({
 }
 
 ItemPresentation.prototype = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 export default ItemPresentation;

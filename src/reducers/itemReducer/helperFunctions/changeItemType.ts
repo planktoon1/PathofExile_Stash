@@ -1,10 +1,10 @@
 import {
   EntityStateMeta,
-  ItemTypes
+  ItemTypes,
 } from "../../../Common/Crafting/interfaces";
 import { updateTagList } from "./updateTagList";
 
-export const changeItemType = (
+export const changeItemTypes = (
   stateMeta: EntityStateMeta,
   itemType: ItemTypes[]
 ) => {
