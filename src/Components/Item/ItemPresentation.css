@@ -151,23 +151,42 @@ p {
   height: 1.8rem;
   width: 1.8rem;
 }
-.itemHeader.Shaper::before,
-.itemHeader.Shaper::after {
+.itemHeader.r-Shaper::before,
+.itemHeader.l-Shaper::after {
   background: url(https://web.poecdn.com/image/item/popup/shaper-symbol.png)
     center no-repeat;
 }
-.itemHeader.Elder::before,
-.itemHeader.Elder::after {
+.itemHeader.r-Elder::before,
+.itemHeader.l-Elder::after {
   background: url(https://web.poecdn.com/image/item/popup/elder-symbol.png)
     center no-repeat;
 }
-.itemHeader.Shaper::before,
-.itemHeader.Elder::before {
-  left: 0.2rem;
+.itemHeader.r-Redeemer::before,
+.itemHeader.l-Redeemer::after {
+  background: url(https://web.poecdn.com/image/item/popup/redeemer-symbol.png)
+    center no-repeat;
 }
-.itemHeader.Shaper::after,
-.itemHeader.Elder::after {
-  right: 0.2rem;
+.itemHeader.r-Crusader::before,
+.itemHeader.l-Crusader::after {
+  background: url(https://web.poecdn.com/image/item/popup/crusader-symbol.png)
+    center no-repeat;
+}
+.itemHeader.r-Warlord::before,
+.itemHeader.l-Warlord::after {
+  background: url(https://web.poecdn.com/image/item/popup/warlord-symbol.png)
+    center no-repeat;
+}
+.itemHeader.r-Hunter::before,
+.itemHeader.l-Hunter::after {
+  background: url(https://web.poecdn.com/image/item/popup/hunter-symbol.png)
+    center no-repeat;
+}
+
+.itemHeader::before {
+  left: 0.3rem;
+}
+.itemHeader::after {
+  right: 0.3rem;
 }
 
 .separator {

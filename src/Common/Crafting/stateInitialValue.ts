@@ -1,4 +1,4 @@
-import { EntityState, ItemTypes } from "./interfaces";
+import { EntityState } from "./interfaces";
 import { getBaseItemFromName } from "./CraftingUtil";
 import { cloneDeep } from "lodash";
 import { intialCalculatedProps } from "./initialCalculatedProps";
@@ -15,5 +15,5 @@ export const stateInitialValue: EntityState = {
   quality: 0,
   tags: [],
   implicitTranslations: [],
-  modTranslations: []
+  modTranslations: [],
 };

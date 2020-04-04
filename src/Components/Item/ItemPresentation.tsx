@@ -8,6 +8,7 @@ import "./ItemPresentation.css";
 import { EntityState } from "../../Common/Crafting/interfaces";
 import { getModTier } from "./utility";
 
+// ######## Component ########
 function ItemPresentation({
   item,
   showAdvancedDetails,
@@ -18,9 +19,15 @@ function ItemPresentation({
   // ------------- Item Header -------------
   const itemHeader = () => {
     const doubleLinedRarities = ["Rare", "Unique"];
+    const leftInfluence = item.itemTypes[0];
+    const rightInfluence = item.itemTypes[1]
+      ? item.itemTypes[1]
+      : item.itemTypes[0];
     if (doubleLinedRarities.includes(item.rarity)) {
       return (
-        <div className={`itemHeader ${item.rarity}`}>
+        <div
+          className={`itemHeader ${item.rarity}  r-${rightInfluence} l-${leftInfluence}`}
+        >
           <div className="itemName">{item.name}</div>
           <div className="itemName typeLine">{item.baseItem.name}</div>
         </div>
@@ -32,7 +39,9 @@ function ItemPresentation({
       }
 
       return (
-        <div className={`itemHeader ${item.rarity}`}>
+        <div
+          className={`itemHeader ${item.rarity} r-${rightInfluence} l-${leftInfluence}`}
+        >
           <div
             className="itemName typeLine"
             style={{ fontSize: name.length > 32 ? 15 : 19 }}
@@ -367,7 +376,7 @@ function ItemPresentation({
       <div className="affixes">
         <div className={`separator ${item.rarity}`}></div>
         {item.modTranslations.map((mod) => (
-          <>
+          <span key={mod.translation}>
             {showAdvancedDetails && mod.displayAdvancedDetails && (
               <p className="value detail">{mod.advancedDetails}</p>
             )}
@@ -380,7 +389,7 @@ function ItemPresentation({
             >
               {mod.translation}
             </p>
-          </>
+          </span>
         ))}
       </div>
     );
